@@ -1,0 +1,18 @@
+.page_news_item {
+    margin: 20px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.page_news_item__head {
+    margin: 0;
+    text-align: left;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 58px;
+}
+
+.page_news_item__date {
+    color: var(--gray-color);
+}
