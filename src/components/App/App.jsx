@@ -6,10 +6,11 @@ import Footer from "../Footer/Footer";
 import News from "../News/News";
 import PageNewsItem from "../PageNewsItem/PageNewsItem";
 import TextEditorPage from "../PageTextEditor/PageTextEditor";
+import {Fragment} from "react";
 
 function App() {
   return (
-    <div className="page__container">
+    <>
       <Header/>
       <Switch>
         <Route exact path='/editor'>
@@ -26,7 +27,7 @@ function App() {
         </Route>
       </Switch>
       <Footer/>
-    </div>
+    </>
   );
 }
 
