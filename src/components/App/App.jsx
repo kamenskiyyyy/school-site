@@ -5,12 +5,16 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import News from "../News/News";
 import PageNewsItem from "../PageNewsItem/PageNewsItem";
+import TextEditorPage from "../PageTextEditor/PageTextEditor";
 
 function App() {
   return (
     <div className="page__container">
       <Header/>
       <Switch>
+        <Route exact path='/editor'>
+          <TextEditorPage />
+        </Route>
         <Route exact path='/news/:id'>
           <PageNewsItem />
         </Route>
