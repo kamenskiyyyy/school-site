@@ -134,7 +134,7 @@
     position: absolute;
     top: 35px;
     left: 15px;
-    background: rgba(242, 54, 35, 0.8);
+    background: var(--red-color);
     border-radius: 6px;
     z-index: 2;
     transition: linear 300ms;

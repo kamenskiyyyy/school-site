@@ -12,7 +12,7 @@ class NewsApi {
     })
       .then(handleOriginalResponse)
       .then(data => {
-        return data
+        return data.reverse()
       })
   }
 

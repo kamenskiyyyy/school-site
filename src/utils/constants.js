@@ -1,47 +1,51 @@
 export const navLinksList = [
   {
-    name: 'О школе',
-    path: '/about',
+    name: 'Сведения об ОО',
+    path: '/svedeniya',
     dropMenu: [
       {
         name: 'Основные сведения',
-        path: '/about/osnosnye-svedenia'
+        path: '/svedeniya/osnosnye-svedenia'
       },
       {
         name: 'Руководство. Педагогический состав',
-        path: '/about/rucovodstvo'
+        path: '/svedeniya/rucovodstvo'
       },
       {
         name: 'Структура и органы управления образовательной организации',
-        path: '/about/structure'
+        path: '/svedeniya/structure'
       },
       {
         name: 'Образование',
-        path: '/about/education'
+        path: '/svedeniya/education'
       },
       {
         name: 'Материально-техническое обеспечение и оснащенность образовательного процесса',
-        path: '/about/materialno'
+        path: '/svedeniya/materialno'
+      },
+      {
+        name: 'Стипендии и иные виды материальной поддержки',
+        path: '/svedeniya/stipendiya'
       },
       {
         name: 'Платные образовательные услуги',
-        path: '/about/platnue-uslugi'
+        path: '/svedeniya/platnue-uslugi'
       },
       {
         name: 'Финансово-хозяйственная деятельность',
-        path: '/about/financi'
+        path: '/svedeniya/financi'
       },
       {
         name: 'Вакантные места для приема (перевода)',
-        path: 'vacantnue-mesta'
+        path: '/svedeniya/vacantnue-mesta'
       },
       {
         name: 'Доступная среда',
-        path: '/about/doctupnaya-sreda'
+        path: '/svedeniya/doctupnaya-sreda'
       },
       {
         name: 'Международное сотрудничество',
-        path: '/about/mezhdunarodnoe'
+        path: '/svedeniya/mezhdunarodnoe'
       }
     ]
   },
@@ -52,5 +56,27 @@ export const navLinksList = [
   {
     name: 'food',
     path: '/food'
+  },
+  {
+    name: 'Ученикам',
+    path: '/students'
+  },
+  {
+    name: 'Родителям',
+    path: '/parents'
+  },
+  {
+    name: 'Образование',
+    path: '/education'
+  },
+  {
+    name: 'Контакты',
+    path: '/contacts'
   }
 ]
+
+export function formatDate(date) {
+  const d = new Date(date);
+  return ('0' + (d.getDate() - 1)).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + d.getFullYear();
+}
+
