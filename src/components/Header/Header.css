@@ -20,3 +20,81 @@
 .header__logo:focus, .header__logo:hover {
     transform: scale(1.1);
 }
+
+.header__icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background: var(--black-color) url("../../images/profile-icon.svg") no-repeat center;
+    border: none;
+    cursor: pointer;
+    transition: linear 200ms;
+}
+
+.header__icon:hover {
+    transform: scale(1.1);
+}
+
+.header__profile {
+    position: relative;
+}
+
+.header__icon_login {
+    background: var(--green-color) url("../../images/profile-icon.svg") no-repeat center;
+}
+
+.header__popup {
+    flex-direction: column;
+    left: unset;
+    right: 0;
+    background: var(--white-color);
+    -webkit-box-shadow: 0 0 11px 0 rgba(50, 50, 50, 0.2);
+    -moz-box-shadow: 0 0 11px 0 rgba(50, 50, 50, 0.2);
+    box-shadow: 0 0 11px 0 rgba(50, 50, 50, 0.2);
+    transform: translateY(10px);
+}
+
+.header__popup_open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header__popup_btn {
+    margin: 20px 40px;
+    padding: 8px 16px;
+    color: var(--white-color);
+    transition: linear 200ms;
+    display: flex;
+    align-items: center;
+    border: 0;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 18px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.header__popup_btn:hover {
+    opacity: .8;
+}
+
+.header__popup_btn_green {
+    background: var(--green-color);
+    border-radius: 3px;
+    --white-color: black;
+}
+
+.header__popup img {
+    margin-top: 10px;
+    align-self: center;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 3px var(--green-color) solid;
+    border-radius: 50px;
+}
+
+.header__popup_link {
+    color: var(--black-color);
+}
