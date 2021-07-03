@@ -7,14 +7,21 @@ import News from "../News/News";
 import PageNewsItem from "../PageNewsItem/PageNewsItem";
 import TextEditorPage from "../PageTextEditor/PageTextEditor";
 import {AppContext} from "../../contexts/AppContext";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Login from "../Login/Login";
 import {auth} from "../../utils/auth";
 import {statusErrors} from "../../utils/constants";
+import {useCookies} from "react-cookie";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [cookies] = useCookies(['logged']);
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    setLoggedIn(cookies.logged);
+    console.log(cookies.logged)
+  }, [cookies])
 
 
   // Обработчик ошибки по кнопке Войти
@@ -30,6 +37,9 @@ function App() {
     // });
   }
 
+  // removeCookie('logged', true)
+
+
   // Обработчик по кнопке Войти
   function handleLogin(e, login, password) {
     // loadingPopup(true)
@@ -43,7 +53,6 @@ function App() {
       })
       .catch(err => handleError(e.target, err));                                          // По указанным Логину и Паролю пользователь не найден. Проверьте введенные данные и повторите попытку.
   }
-
 
   return (
     <AppContext.Provider value={{loggedIn}}>
