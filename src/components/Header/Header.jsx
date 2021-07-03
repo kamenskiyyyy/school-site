@@ -11,8 +11,12 @@ function Header({isLogin}) {
     setprofileOpen(!profileOpen)
   }
 
+  function handleOpenOff() {
+    setprofileOpen(false)
+  }
+
   return (
-    <header className='page__container header' onMouseLeave={handleProfileClick}>
+    <header className='page__container header' onMouseLeave={handleOpenOff}>
       <NavLink className='header__logo logo' to='/'><img src={logo} alt="Логотип"/></NavLink>
       <Navigation/>
       <div className='header__profile'>

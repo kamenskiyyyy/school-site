@@ -1,5 +1,4 @@
 import './Login.css';
-import {Link} from "react-router-dom";
 import {useValidationForm} from "../../hooks/useValidationForm";
 
 function Login(props) {
@@ -36,10 +35,6 @@ function Login(props) {
         <span className='login__form_span'>{errors.password}</span>
         <button type='submit' className={`login_btn ${!isValid && 'login_btn-disabled'}`} disabled={!isValid}>Войти</button>
       </form>
-      <div className='login__in'>
-        <p>Ещё не зарегистрированы?</p>
-        <Link to='/signup'>Регистрация</Link>
-      </div>
     </main>
   )
 }
