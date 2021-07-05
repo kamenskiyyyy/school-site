@@ -16,7 +16,7 @@ function News() {
   console.log(news)
 
   return (
-    <main className='page_news'>
+    <main className='page_news page__container'>
       <h1 className='page_news__head'>Новости и события</h1>
       <div className='page_news__all'>
         {news.map((item, index) => {

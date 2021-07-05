@@ -25,7 +25,7 @@ function PageNewsItem() {
   // }
 
   return (
-    <main className='page_news_item'>
+    <main className='page_news_item page__container'>
       <h1 className='page_news_item__head'>{news.title}</h1>
       <p className='page_news_item__date'>{formatDate(news.date)}</p>
       <div dangerouslySetInnerHTML={{__html: news.description}}/>
