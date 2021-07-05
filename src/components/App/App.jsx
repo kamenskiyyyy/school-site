@@ -1,62 +1,29 @@
 import './App.css';
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, withRouter} from "react-router-dom";
 import Main from "../Main/Main";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import News from "../News/News";
 import PageNewsItem from "../PageNewsItem/PageNewsItem";
 import TextEditorPage from "../PageTextEditor/PageTextEditor";
-import {AppContext} from "../../contexts/AppContext";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Login from "../Login/Login";
-import {auth} from "../../utils/auth";
-import {statusErrors} from "../../utils/constants";
-import {useCookies} from "react-cookie";
+import {connect} from "react-redux";
+import {autoLogin} from "../../store/actions/auth";
 
-function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [cookies] = useCookies(['logged']);
-  const [isLoading, setIsLoading] = useState(false)
+function App(props) {
+  const isDataUser = localStorage.getItem('userData');
 
   useEffect(() => {
-    setLoggedIn(cookies.logged);
-    console.log(cookies.logged)
-  }, [cookies])
-
-
-  // Обработчик ошибки по кнопке Войти
-  function handleError(form, statusError) {
-    const errors = statusErrors.filter(error => error.name === form.name)[0].errors;
-    const statusErrorMessage = errors.filter(error => error.status === statusError)[0].message;
-    setIsLoading(false);
-    // setInfoTooltip({
-    //   ...infoTooltip,
-    //   isOpen: true,
-    //   image: statusErrorImage,
-    //   message: statusErrorMessage ? statusErrorMessage : statusErrorText
-    // });
-  }
-
-  // removeCookie('logged', true)
-
-
-  // Обработчик по кнопке Войти
-  function handleLogin(e, login, password) {
-    // loadingPopup(true)
-    auth.authorize(login, password)
-      .then((data) => {
-        setIsLoading(false)
-        // setInfoTooltip({isOpen: false})
-        setLoggedIn(true);
-        // setCurrentUser({...data});
-        window.location.reload();
-      })
-      .catch(err => handleError(e.target, err));                                          // По указанным Логину и Паролю пользователь не найден. Проверьте введенные данные и повторите попытку.
-  }
+    if (isDataUser) {
+      props.autoLogin()
+      console.log(props)
+    }
+  }, [isDataUser, props])
 
   return (
-    <AppContext.Provider value={{loggedIn}}>
-      <Header isLogin={loggedIn}/>
+    <>
+      <Header/>
       <Switch>
         <Route exact path='/editor'>
           <TextEditorPage/>
@@ -68,16 +35,27 @@ function App() {
           <News/>
         </Route>
         <Route path='/signin'>
-          <Login handleLogin={handleLogin}
-                 handleError={handleError} />
+          <Login/>
         </Route>
         <Route path='/'>
           <Main/>
         </Route>
       </Switch>
       <Footer/>
-    </AppContext.Provider>
+    </>
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: !!state.auth.userData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    autoLogin: () => dispatch(autoLogin())
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

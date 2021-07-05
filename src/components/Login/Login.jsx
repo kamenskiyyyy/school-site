@@ -1,12 +1,19 @@
 import './Login.css';
 import {useValidationForm} from "../../hooks/useValidationForm";
+import {auth} from "../../store/actions/auth";
+import {connect} from "react-redux";
 
 function Login(props) {
   const {values, handleErrors, errors, isValid} = useValidationForm();
 
+  // Обработчик по кнопке Войти
+  function handleLogin(e, login, password) {
+    props.auth(e, login, password)
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    props.handleLogin(e, values.login, values.password);
+    handleLogin(e, values.login, values.password);
   }
 
   return (
@@ -39,4 +46,10 @@ function Login(props) {
   )
 }
 
-export default Login;
+function mapDispatchToProps(dispatch) {
+  return {
+    auth: (e, login, password) => dispatch(auth(e, login, password))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Login);

@@ -1,0 +1,13 @@
+.page_main {
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.page_main__news {
+
+}
+
+.page_main__useful {
+
+}

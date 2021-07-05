@@ -22,6 +22,7 @@ class Auth {
   }
 
   authorize = (login, password) => {
+    console.log('происходит fetch')
     return fetch(`${this.baseUrl}/signin`, {
       method: 'POST',
       credentials: 'include',
@@ -51,8 +52,19 @@ class Auth {
         return data;
       })
   }
+
+  logout = () => {
+    return fetch(`${this.baseUrl}/users/logout`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(handleOriginalResponse)
+  }
 }
 
-export const auth = new Auth({
+export const authApi = new Auth({
   baseUrl: 'http://localhost:3030',
 })
