@@ -2,8 +2,11 @@ import './Login.css';
 import {useValidationForm} from "../../hooks/useValidationForm";
 import {auth} from "../../store/actions/auth";
 import {connect} from "react-redux";
+import {useHistory} from "react-router-dom";
+import {useEffect} from "react";
 
 function Login(props) {
+  const history = useHistory();
   const {values, handleErrors, errors, isValid} = useValidationForm();
 
   // Обработчик по кнопке Войти
@@ -14,7 +17,14 @@ function Login(props) {
   function handleSubmit(e) {
     e.preventDefault();
     handleLogin(e, values.login, values.password);
+    history.push('/profile')
   }
+
+  useEffect(() => {
+    if (props.isAuthenticated) {
+      history.push('/profile')
+    }
+  }, [history, props.isAuthenticated])
 
   return (
     <main className='login page__container'>
@@ -46,10 +56,16 @@ function Login(props) {
   )
 }
 
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: !!state.auth.userData
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     auth: (e, login, password) => dispatch(auth(e, login, password))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

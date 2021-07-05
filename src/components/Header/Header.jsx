@@ -32,8 +32,8 @@ function Header(props) {
           ?  <>
             <img src={logo} alt="Фотография пользователя"/>
               <ul className='nav__link__drop-menu_list'>
-                <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/logout'>Профиль</NavLink></li>
-                <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/logout'>Добавить новость</NavLink></li>
+                <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/profile'>Профиль</NavLink></li>
+                <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/news'>Добавить новость</NavLink></li>
                 <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/' onClick={handleLogout}>Выйти</NavLink></li>
               </ul>
             </>

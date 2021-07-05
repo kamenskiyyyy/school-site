@@ -50,24 +50,34 @@ export const navLinksList = [
     ]
   },
   {
+    name: 'Мы',
+    path: undefined,
+    dropMenu: [
+      {
+        name: 'Учителя',
+        path: '/teachers'
+      },
+      {
+        name: 'Ученики',
+        path: '/students'
+      }
+    ]
+  },
+  {
     name: 'Новости',
     path: '/news'
   },
   {
-    name: 'food',
-    path: '/food'
-  },
-  {
-    name: 'Ученикам',
-    path: '/students'
-  },
-  {
-    name: 'Родителям',
-    path: '/parents'
-  },
-  {
     name: 'Образование',
     path: '/education'
+  },
+  {
+    name: 'Воспитание',
+    path: '/upbringing'
+  },
+  {
+    name: 'food',
+    path: '/food'
   },
   {
     name: 'Контакты',

@@ -9,37 +9,32 @@ import TextEditorPage from "../PageTextEditor/PageTextEditor";
 import {useEffect} from "react";
 import Login from "../Login/Login";
 import {connect} from "react-redux";
-import {autoLogin} from "../../store/actions/auth";
+import {autoLogin, logout} from "../../store/actions/auth";
+import ProtectedRoute from "../../hoc/ProtectedRoute";
+import Profile from "../Profile/Profile";
+import {useCookies} from "react-cookie";
 
 function App(props) {
-  const isDataUser = localStorage.getItem('userData');
+  const [cookie] = useCookies(['logged'])
 
   useEffect(() => {
-    if (isDataUser) {
+    if (cookie.logged === 'true') {
       props.autoLogin()
-      console.log(props)
     }
-  }, [isDataUser, props])
+  }, [cookie.logged, props])
 
   return (
     <>
       <Header/>
       <Switch>
-        <Route exact path='/editor'>
-          <TextEditorPage/>
-        </Route>
-        <Route exact path='/news/:id'>
-          <PageNewsItem/>
-        </Route>
-        <Route path='/news'>
-          <News/>
-        </Route>
-        <Route path='/signin'>
-          <Login/>
-        </Route>
-        <Route path='/'>
-          <Main/>
-        </Route>
+        <Route exact path='/editor' component={TextEditorPage}/>
+        <Route exact path='/news/:id' component={PageNewsItem}/>
+        <Route path='/news' component={News}/>
+        <Route path='/signin' component={Login}/>
+        <ProtectedRoute path='/profile'>
+          <Profile/>
+        </ProtectedRoute>
+        <Route path='/' component={Main}/>
       </Switch>
       <Footer/>
     </>
@@ -54,7 +49,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    autoLogin: () => dispatch(autoLogin())
+    autoLogin: () => dispatch(autoLogin()),
+    logout: () => dispatch(logout())
   }
 }
 

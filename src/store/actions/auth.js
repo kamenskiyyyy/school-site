@@ -18,10 +18,8 @@ function handleError(form, statusError) {
 
 export function auth(e, login, password) {
   return async dispatch => {
-    console.log('перед auth.authorize')
     await authApi.authorize(login, password)
       .then(userData => {
-        console.log(userData)
         localStorage.setItem('userData', JSON.stringify(userData))
         dispatch(authSuccess(userData))
       })
@@ -29,22 +27,12 @@ export function auth(e, login, password) {
   }
 }
 
-export function logout() {
-  console.log('находимся в logout')
-  localStorage.clear()
-  authApi.logout()
-  return dispatch => {
-    dispatch({type: AUTH_LOGOUT})
-  }
-}
-
 export function autoLogin() {
   const userData = localStorage.getItem('userData')
   return async dispatch => {
     if (userData) {
-      dispatch(authSuccess(userData))
+      dispatch(authSuccess(JSON.parse(userData)))
     } else {
-      console.log('данные с api')
       await authApi.getContent()
         .then((data) => {
           localStorage.setItem('userData', JSON.stringify(data))
@@ -53,6 +41,16 @@ export function autoLogin() {
     }
   }
 }
+
+export function logout() {
+  localStorage.clear()
+  authApi.logout()
+  return dispatch => {
+    dispatch({type: AUTH_LOGOUT})
+  }
+}
+
+
 
 export function authSuccess(userData) {
   return {
