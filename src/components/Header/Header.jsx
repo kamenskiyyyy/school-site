@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 
 function Header(props) {
   const [profileOpen, setProfileOpen] = useState(false);
+  const avatar = 'http://localhost:3030' + props.avatar;
 
   function handleProfileClick() {
     setProfileOpen(!profileOpen)
@@ -30,7 +31,7 @@ function Header(props) {
         <div className={`nav__link__drop-menu header__popup ${profileOpen && 'header__popup_open'}`}>
           {props.isAuthenticated
           ?  <>
-            <img src={logo} alt="Фотография пользователя"/>
+            <img src={avatar} alt="Фотография пользователя"/>
               <ul className='nav__link__drop-menu_list'>
                 <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/profile'>Профиль</NavLink></li>
                 <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/news'>Добавить новость</NavLink></li>
@@ -38,7 +39,7 @@ function Header(props) {
               </ul>
             </>
 
-          : <NavLink to='/signin' className='header__popup_btn header__popup_btn_green'>Войти</NavLink>}
+          : <NavLink to='/signin' className='header__popup_btn header__popup_btn_green'>Вход для сотрудников</NavLink>}
         </div>
       </div>
     </header>
@@ -47,7 +48,8 @@ function Header(props) {
 
 function mapStateToProps(state) {
   return {
-    isAuthenticated: !!state.auth.userData
+    isAuthenticated: !!state.auth.userData,
+    avatar: state.auth.userData.avatar
   }
 }
 

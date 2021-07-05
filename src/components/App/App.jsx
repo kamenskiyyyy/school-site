@@ -13,6 +13,7 @@ import {autoLogin, logout} from "../../store/actions/auth";
 import ProtectedRoute from "../../hoc/ProtectedRoute";
 import Profile from "../Profile/Profile";
 import {useCookies} from "react-cookie";
+import Teachers from "../Teachers/Teachers";
 
 function App(props) {
   const [cookie] = useCookies(['logged'])
@@ -28,6 +29,7 @@ function App(props) {
       <Header/>
       <Switch>
         <Route exact path='/editor' component={TextEditorPage}/>
+        <Route exact path='/teachers' component={Teachers}/>
         <Route exact path='/news/:id' component={PageNewsItem}/>
         <Route path='/news' component={News}/>
         <Route path='/signin' component={Login}/>

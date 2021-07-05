@@ -82,7 +82,7 @@
 .header__popup_btn_green {
     background: var(--green-color);
     border-radius: 3px;
-    --white-color: black;
+    color: var(--white-color);
 }
 
 .header__popup img {

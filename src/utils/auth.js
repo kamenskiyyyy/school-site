@@ -63,6 +63,19 @@ class Auth {
     })
       .then(handleOriginalResponse)
   }
+
+  getAllTeachers = () => {
+    return fetch(`${this.baseUrl}/public/teachers`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data;
+      })
+  }
 }
 
 export const authApi = new Auth({
