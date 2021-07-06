@@ -10,3 +10,26 @@
     font-size: 50px;
     line-height: 58px;
 }
+
+.teachers__desc {
+    margin-top: 20px;
+    text-align: left;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.teachers__list_name {
+    margin: 0;
+    text-align: left;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 38px;
+}
+
+.teachers__list {
+    margin: 30px auto 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 25px;
+}

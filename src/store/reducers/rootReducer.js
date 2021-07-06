@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
 import authReducer from './auth'
-import publicDataReducer from "./public";
+import teachersReducer from "./public";
 
 export default combineReducers({
-  publicData: publicDataReducer,
+  teachers: teachersReducer,
   auth: authReducer
 })

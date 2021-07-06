@@ -52,7 +52,7 @@ export function logout() {
 
 
 
-export function authSuccess(userData) {
+function authSuccess(userData) {
   return {
     type: AUTH_SUCCESS,
     userData

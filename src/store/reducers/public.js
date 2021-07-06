@@ -1,14 +1,24 @@
-import {PUBLIC_DATA} from "../actions/actionTypes";
+import {PUBLIC_DATA_ERROR, PUBLIC_DATA_STARTED, PUBLIC_DATA_SUCCESS} from "../actions/actionTypes";
 
 const initialState = {
-  publicData: undefined
+  loading: false,
+  publicData: [],
+  error: null
 }
 
-export default function publicDataReducer(state = initialState, action) {
+export default function teachersReducer(state = initialState, action) {
   switch (action.type) {
-    case PUBLIC_DATA:
+    case PUBLIC_DATA_STARTED:
       return {
-        ...state, publicData: action.publicData,
+        ...state, loading: true,
+      }
+    case PUBLIC_DATA_SUCCESS:
+      return {
+        ...state, loading: false, publicData: action.publicData, error: null,
+      }
+    case PUBLIC_DATA_ERROR:
+      return {
+        ...state, loading: false, error: action.payload.error,
       }
     default:
       return state

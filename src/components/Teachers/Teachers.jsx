@@ -1,35 +1,51 @@
 import './Teachers.css';
 import {connect} from "react-redux";
-import {useCallback, useEffect} from "react";
+import {useEffect} from "react";
 import {getPublicData} from "../../store/actions/publicData";
+import TeachersItem from "./TeachersItem/TeachersItem";
 
 function Teachers(props) {
+  let dataPublic = props.teachers.publicData
 
-  const getData = useCallback(() => {
-    props.getPublicData()
-  }, [props])
+  const subjects = ["Руководство", "Воспитатели", "Начальное образование", "Словесность", "Социальные науки", "Иностранные языки", "Естественные науки", "Математика и информатика", "Физическая культура и спорт", "Искусство и культура", "Служба сопровождения", "Библиотекари"];
 
   useEffect(() => {
-    getData()
+    props.getPublicData();
   }, []);
-
-  console.log(props.publicData.publicData)
 
   return (
     <main className='page__container teachers'>
-      <h1 className='teachers__head'>Учителя</h1>
-      <p>Профессия учителя, как и мир вокруг, меняется. Появляются новые подходы, методы и даже формы обучения, идет
+      <h1 className='teachers__head'>Коллектив</h1>
+      <p className='teachers__desc'>Профессия учителя, как и мир вокруг, меняется. Появляются новые подходы, методы и
+        даже формы обучения, идет
         непрерывный поиск адекватных времени педагогических идей. Наши педагоги — профессионалы, способные идти в ногу
         со временем и давать академические знания высокого уровня, имеющие активную жизненную позицию, готовые мыслить
         критически, свежо и нестандартно, чуткие и способные стать друзьями и наставниками для каждого ребенка.</p>
-
+      {
+        props.teachers.loading
+          ? <p>Загрузка...</p>
+          : <>
+            {subjects.map((elem, index) => {
+              console.log(elem.type)
+              return <div id={elem} key={index}><h2 className='teachers__list_name'>{elem}</h2>
+                <div className='teachers__list'>
+                  {dataPublic.map((item) => {
+                    if (item.category.some(item => item === elem)) {
+                      return <TeachersItem id={index} item={item} />
+                    }
+                  })}
+                </div>
+              </div>
+            })}
+          </>
+      }
     </main>
   )
 }
 
 function mapStateToProps(state) {
   return {
-    publicData: state.publicData
+    teachers: state.teachers
   }
 }
 

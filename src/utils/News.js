@@ -1,4 +1,5 @@
 import handleOriginalResponse from './utils.js';
+import {baseUrl, serverUrl} from "./constants";
 
 class NewsApi {
   constructor(options) {
@@ -30,9 +31,8 @@ class NewsApi {
 }
 
 export const newsApi = new NewsApi({
-  baseUrl: 'http://localhost:3030',
+  baseUrl: serverUrl,
   headers: {
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
   }
 });

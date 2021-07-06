@@ -1,4 +1,5 @@
 import handleOriginalResponse from "./utils";
+import {serverUrl} from "./constants";
 
 class Auth {
   constructor(options) {
@@ -79,5 +80,5 @@ class Auth {
 }
 
 export const authApi = new Auth({
-  baseUrl: 'http://localhost:3030',
+  baseUrl: serverUrl,
 })
