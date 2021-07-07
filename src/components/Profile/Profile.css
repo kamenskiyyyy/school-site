@@ -1,5 +1,6 @@
 .profile {
     margin: 20px auto;
+    flex-direction: column;
 }
 
 .profile__info {

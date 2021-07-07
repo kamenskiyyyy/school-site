@@ -1,10 +1,11 @@
 import './Profile.css';
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {serverUrl} from "../../utils/constants";
 
 function Profile(props) {
   const user = props.user;
-  const avatar = 'http://localhost:3030' + user.avatar;
-  console.log(props.user)
+  const avatar = serverUrl + user.avatar;
 
   return (
     <main className='page__container profile'>
@@ -30,12 +31,20 @@ function Profile(props) {
               <td>Предмет</td>
               <td>{user.subjects.join(', ')}</td>
             </tr>
-            <tr>
-            </tr>
             </tbody>
           </table>
         </div>
       </div>
+      {user.role === 'admin'
+      && <Link to={{
+        pathname: '/editor',
+        state: {
+          title: 'Добавить новость',
+          data: undefined,
+          id: undefined
+        }
+      }}>Добавить новость</Link>
+      }
     </main>
   )
 }
