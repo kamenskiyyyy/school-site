@@ -5,10 +5,11 @@ import './Header.css';
 import {useState} from "react";
 import {logout} from "../../store/actions/auth";
 import {connect} from "react-redux";
+import {serverUrl} from "../../utils/constants";
 
 function Header(props) {
   const [profileOpen, setProfileOpen] = useState(false);
-  const avatar = 'http://localhost:3030' + props.avatar;
+  const avatar = serverUrl + props.avatar;
 
   function handleProfileClick() {
     setProfileOpen(!profileOpen)

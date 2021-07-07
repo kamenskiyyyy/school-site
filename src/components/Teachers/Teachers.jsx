@@ -6,11 +6,11 @@ import TeachersItem from "./TeachersItem/TeachersItem";
 
 function Teachers(props) {
   let dataPublic = props.teachers.publicData
-
   const subjects = ["Руководство", "Воспитатели", "Начальное образование", "Словесность", "Социальные науки", "Иностранные языки", "Естественные науки", "Математика и информатика", "Физическая культура и спорт", "Искусство и культура", "Служба сопровождения", "Библиотекари"];
 
   useEffect(() => {
     props.getPublicData();
+    //eslint-disable-next-line
   }, []);
 
   return (
@@ -26,13 +26,12 @@ function Teachers(props) {
           ? <p>Загрузка...</p>
           : <>
             {subjects.map((elem, index) => {
-              console.log(elem.type)
               return <div id={elem} key={index}><h2 className='teachers__list_name'>{elem}</h2>
                 <div className='teachers__list'>
-                  {dataPublic.map((item) => {
+                  {dataPublic.map((item, i) => {
                     if (item.category.some(item => item === elem)) {
-                      return <TeachersItem id={index} item={item} />
-                    }
+                      return <TeachersItem id={index} key={i} item={item} />
+                    } else return undefined
                   })}
                 </div>
               </div>

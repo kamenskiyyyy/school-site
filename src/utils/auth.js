@@ -1,4 +1,4 @@
-import handleOriginalResponse from "./utils";
+import {handleOriginalResponse} from "./utils";
 import {serverUrl} from "./constants";
 
 class Auth {

@@ -5,24 +5,16 @@ import {useEffect, useState} from "react";
 import {formatDate} from "../../utils/constants";
 
 function PageNewsItem() {
-  const url = useHistory().location.pathname.split('/')[2];
+  const url = useHistory().location.pathname;
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     newsApi.searchNewsItem(url)
       .then(res => {
-        setNews(res)
+        setNews(res[0])
       })
       .catch(err => console.log(err));
   }, [url])
-
-  console.log(news)
-
-  // function htmlDecode(input) {
-  //   const e = document.createElement('div');
-  //   e.innerHTML = input;
-  //   return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-  // }
 
   return (
     <main className='page_news_item page__container'>
