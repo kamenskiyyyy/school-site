@@ -1,5 +1,5 @@
-import handleOriginalResponse from './utils.js';
-import {baseUrl, serverUrl} from "./constants";
+import {handleOriginalResponse} from './utils.js';
+import {serverUrl} from "./constants";
 
 class NewsApi {
   constructor(options) {
@@ -17,11 +17,24 @@ class NewsApi {
       })
   }
 
-  searchNewsItem(id) {
-    return fetch(`${this.baseUrl}/news/search`, {
+  searchNewsItem(url) {
+    return fetch(`${this.baseUrl}/news/getNews`, {
       method: 'POST',
       headers: this.headers,
-      body: JSON.stringify({id})
+      body: JSON.stringify({url})
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data
+      })
+  }
+
+  createNewNews(data) {
+    return fetch(`${this.baseUrl}/news/create`, {
+      method: 'POST',
+      headers: this.headers,
+      credentials: 'include',
+      body: JSON.stringify(data)
     })
       .then(handleOriginalResponse)
       .then(data => {
