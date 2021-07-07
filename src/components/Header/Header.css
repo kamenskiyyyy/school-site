@@ -73,6 +73,7 @@
     line-height: 18px;
     cursor: pointer;
     text-decoration: none;
+    border-radius: 3px;
 }
 
 .header__popup_btn:hover {
@@ -81,7 +82,6 @@
 
 .header__popup_btn_green {
     background: var(--green-color);
-    border-radius: 3px;
     color: var(--white-color);
 }
 

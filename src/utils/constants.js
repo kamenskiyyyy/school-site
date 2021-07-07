@@ -89,7 +89,7 @@ export const navLinksList = [
 
 export function formatDate(date) {
   const d = new Date(date);
-  return ('0' + (d.getDate() - 1)).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + d.getFullYear();
+  return ('0' + (d.getDate())).slice(-2) + '.' + ('0' + (d.getMonth() + 1)).slice(-2) + '.' + d.getFullYear();
 }
 
 export const statusSuccessMessage = 'Вы успешно зарегистрировались!';

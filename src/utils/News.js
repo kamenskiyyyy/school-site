@@ -17,8 +17,8 @@ class NewsApi {
       })
   }
 
-  searchNewsItem(url) {
-    return fetch(`${this.baseUrl}/news/getNews`, {
+  getNewsItem(url) {
+    return fetch(`${this.baseUrl}/news/getNew`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({url})
@@ -31,6 +31,19 @@ class NewsApi {
 
   createNewNews(data) {
     return fetch(`${this.baseUrl}/news/create`, {
+      method: 'POST',
+      headers: this.headers,
+      credentials: 'include',
+      body: JSON.stringify(data)
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data
+      })
+  }
+
+  editNewsItem(data) {
+    return fetch(`${this.baseUrl}/news/edit`, {
       method: 'POST',
       headers: this.headers,
       credentials: 'include',

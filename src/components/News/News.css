@@ -20,4 +20,27 @@
     grid-gap: 20px;
 }
 
+.page_news__btn {
+    margin: 20px auto 0;
+    padding: 10px 145px;
+    width: 320px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    background: transparent;
+    border: 1px solid #424242;
+    border-radius: 5px;
+    color: var(--black-color);
+    cursor: pointer;
+    transition: linear 200ms;
+}
 
+.page_news__btn:hover, .page_news__btn:active, .page_news__btn:focus {
+    opacity: .8;
+    outline: none;
+}
+
+.page_news__btn_hidden {
+    display: none;
+}

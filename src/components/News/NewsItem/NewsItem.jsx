@@ -1,5 +1,5 @@
 import './NewsItem.css';
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {formatDate} from "../../../utils/constants";
 
 function NewsItem({title, img, date, link}) {
@@ -12,7 +12,7 @@ function NewsItem({title, img, date, link}) {
 
   const index = getRandomIntInclusive(0, 3);
 
-  return <NavLink to={link} className='news-item'>
+  return <Link to={link} className='news-item'>
     <div className='news-item__item'>
       {img ? <img className='news-item__img' src={img} alt={`Картинка новости ${title}`}/> :
         <canvas id={`id${index}`} className='news-item__img'/>}
@@ -21,7 +21,7 @@ function NewsItem({title, img, date, link}) {
       <h3 className='news-item__title'>{title}</h3>
       <p className='news-item__date'>{formatDate(date)}</p>
     </div>
-  </NavLink>
+  </Link>
 }
 
 export default NewsItem;

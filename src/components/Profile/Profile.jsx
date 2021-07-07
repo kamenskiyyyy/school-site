@@ -36,7 +36,7 @@ function Profile(props) {
         </div>
       </div>
       {user.role === 'admin'
-      && <Link to={{
+      && <Link className='header__popup_btn header__popup_btn_green' to={{
         pathname: '/editor',
         state: {
           title: 'Добавить новость',

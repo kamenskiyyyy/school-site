@@ -1,4 +1,4 @@
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import logo from '../../images/logo.svg';
 import Navigation from "./Navigation/Navigation";
 import './Header.css';
@@ -9,7 +9,7 @@ import {serverUrl} from "../../utils/constants";
 
 function Header(props) {
   const [profileOpen, setProfileOpen] = useState(false);
-  const avatar = serverUrl + props.avatar;
+  const avatar = serverUrl + props.user.avatar;
 
   function handleProfileClick() {
     setProfileOpen(!profileOpen)
@@ -35,7 +35,16 @@ function Header(props) {
             <img src={avatar} alt="Фотография пользователя"/>
               <ul className='nav__link__drop-menu_list'>
                 <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/profile'>Профиль</NavLink></li>
-                <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/news'>Добавить новость</NavLink></li>
+                <li>{props.user.role === 'admin'
+                && <Link className={`nav__link drop-menu__link header__popup_link`} to={{
+                  pathname: '/editor',
+                  state: {
+                    title: 'Добавить новость',
+                    data: undefined,
+                    id: undefined
+                  }
+                }}>Добавить новость</Link>
+                }</li>
                 <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/' onClick={handleLogout}>Выйти</NavLink></li>
               </ul>
             </>
@@ -50,7 +59,7 @@ function Header(props) {
 function mapStateToProps(state) {
   return {
     isAuthenticated: !!state.auth.userData,
-    avatar: state.auth.userData.avatar
+    user: state.auth.userData
   }
 }
 

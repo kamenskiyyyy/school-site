@@ -15,3 +15,20 @@
 .page_news_item__date {
     color: var(--gray-color);
 }
+
+.page_news_item__buttons {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.page_news_item__button {
+    margin: 0 10px;
+}
+
+.page_news_item__button_red {
+    background: var(--red-color);
+}
+
+.page_news_item__button_gray {
+    background: var(--gray-color);
+}

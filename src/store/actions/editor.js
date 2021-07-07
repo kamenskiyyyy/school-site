@@ -14,6 +14,19 @@ export function createNewNews(e, title, categories, isPublic, description, guid,
   }
 }
 
+export function editNewNews(e, id, title, categories, isPublic, description, guid, author, date) {
+  return async dispatch => {
+    dispatch(dataEditorStarted())
+    await newsApi.editNewsItem({id, title, categories, isPublic, description, guid, author, date})
+      .then((response) => {
+        dispatch(dataEditorSuccess(response))
+      })
+      .catch((err) => {
+        dispatch(dataEditorError(err.message))
+      })
+  }
+}
+
 function dataEditorStarted() {
   return {
     type: EDITOR_SEND_STARTED
