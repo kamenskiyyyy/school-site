@@ -45,6 +45,19 @@ class PageApi {
       })
   }
 
+  archivePage(data) {
+    return fetch(`${this.baseUrl}/pages/edit`, {
+      method: 'PATCH',
+      headers: this.headers,
+      credentials: 'include',
+      body: JSON.stringify(data)
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data
+      })
+  }
+
   deletePage(data) {
     return fetch(`${this.baseUrl}/pages/delete`, {
       method: 'DELETE',

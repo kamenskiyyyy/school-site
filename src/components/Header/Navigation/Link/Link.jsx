@@ -14,7 +14,7 @@ function Link({nav, index, handleOffNavClick, isNavOpened}) {
         {nav.dropMenu && nav.dropMenu.map((drop, index) => {
           return <li key={index}><NavLink exact activeClassName='nav__link_active' onClick={handleOffNavClick}
                                           className={`nav__link drop-menu__link ${isNavOpened && 'nav__link_mobile'}`}
-                                          to={drop.path}>{drop.name}</NavLink></li>
+                                          to={{pathname: drop.path, state: nav}}>{drop.name}</NavLink></li>
         })}
       </ul>
     </div>

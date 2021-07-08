@@ -54,6 +54,19 @@ export function editPage(e, id, title, description, link, isPublic) {
   }
 }
 
+export function deletePage(pageId) {
+  return async dispatch => {
+    dispatch(dataEditorStarted())
+    await pageApi.deletePage({pageId})
+      .then((response) => {
+        dispatch(dataEditorSuccess(response))
+      })
+      .catch((err) => {
+        dispatch(dataEditorError(err.message))
+      })
+  }
+}
+
 function dataEditorStarted() {
   return {
     type: EDITOR_SEND_STARTED

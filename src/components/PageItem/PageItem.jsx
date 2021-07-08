@@ -3,8 +3,10 @@ import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {pageApi} from "../../utils/Pages";
+import {deletePage} from "../../store/actions/editor";
 
 function PageItem(props) {
+  const history = useHistory();
   const url = useHistory().location.pathname;
   const [page, setPage] = useState([]);
 
@@ -16,7 +18,11 @@ function PageItem(props) {
       .catch(err => console.log(err));
   }, [url])
 
-  console.log(page)
+  function handleDeletePage() {
+    props.deletePage(page._id);
+    history.push('/');
+    window.location.reload();
+  }
 
   return (
     <main className='page__container page_news_item'>
@@ -31,8 +37,7 @@ function PageItem(props) {
             isEdit: true,
             id: page._id
           }}} className='header__popup_btn header__popup_btn_green page_news_item__button'>Редактировать</Link>
-        <button className='header__popup_btn page_news_item__button page_news_item__button_gray'>Архивировать</button>
-        <button className='header__popup_btn page_news_item__button page_news_item__button_red'>Удалить</button>
+        <button onClick={handleDeletePage} className='header__popup_btn page_news_item__button page_news_item__button_red'>Удалить</button>
       </div>
       }
       <h1 className='page_news_item__head'>{page.title}</h1>
@@ -47,4 +52,10 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(PageItem);
+function mapDispatchToProps(dispatch) {
+  return {
+    deletePage: (id) => dispatch(deletePage(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageItem);
