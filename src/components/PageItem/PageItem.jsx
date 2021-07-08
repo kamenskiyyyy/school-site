@@ -1,21 +1,22 @@
-import './PageNewsItem.css';
+import './PageItem.css';
 import {Link, useHistory} from "react-router-dom";
-import {newsApi} from "../../utils/News";
 import {useEffect, useState} from "react";
-import {formatDate} from "../../utils/constants";
 import {connect} from "react-redux";
+import {pageApi} from "../../utils/Pages";
 
-function PageNewsItem(props) {
+function PageItem(props) {
   const url = useHistory().location.pathname;
-  const [news, setNews] = useState([]);
+  const [page, setPage] = useState([]);
 
   useEffect(() => {
-    newsApi.getNewsItem(url)
+    pageApi.getPage(url)
       .then(res => {
-        setNews(res[0])
+        setPage(res[0])
       })
       .catch(err => console.log(err));
   }, [url])
+
+  console.log(page)
 
   return (
     <main className='page__container page_news_item'>
@@ -24,19 +25,18 @@ function PageNewsItem(props) {
         <Link to={{
           pathname: '/editor',
           state: {
-            title: 'Редактировать новость',
-            data: news,
-            forNews: true,
+            title: 'Редактировать страницу',
+            forPage: true,
+            data: page,
             isEdit: true,
-            id: news._id
+            id: page._id
           }}} className='header__popup_btn header__popup_btn_green page_news_item__button'>Редактировать</Link>
         <button className='header__popup_btn page_news_item__button page_news_item__button_gray'>Архивировать</button>
         <button className='header__popup_btn page_news_item__button page_news_item__button_red'>Удалить</button>
       </div>
       }
-      <h1 className='page_news_item__head'>{news.title}</h1>
-      <p className='page_news_item__date'>{formatDate(news.date)}</p>
-      <div dangerouslySetInnerHTML={{__html: news.description}}/>
+      <h1 className='page_news_item__head'>{page.title}</h1>
+      <div dangerouslySetInnerHTML={{__html: page.description}}/>
     </main>
   )
 }
@@ -47,4 +47,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(PageNewsItem);
+export default connect(mapStateToProps, null)(PageItem);

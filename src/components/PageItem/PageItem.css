@@ -1,0 +1,34 @@
+.page_news_item {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.page_news_item__head {
+    margin: 0 0 30px;
+    text-align: left;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 58px;
+}
+
+.page_news_item__date {
+    color: var(--gray-color);
+}
+
+.page_news_item__buttons {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.page_news_item__button {
+    margin: 0 10px;
+}
+
+.page_news_item__button_red {
+    background: var(--red-color);
+}
+
+.page_news_item__button_gray {
+    background: var(--gray-color);
+}

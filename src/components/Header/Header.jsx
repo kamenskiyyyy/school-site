@@ -40,10 +40,22 @@ function Header(props) {
                   pathname: '/editor',
                   state: {
                     title: 'Добавить новость',
+                    forNews: true,
                     data: undefined,
                     id: undefined
                   }
                 }}>Добавить новость</Link>
+                }</li>
+                <li>{props.user.role === 'admin'
+                && <Link className={`nav__link drop-menu__link header__popup_link`} to={{
+                  pathname: '/editor',
+                  state: {
+                    title: 'Добавить страницу',
+                    forPage: true,
+                    data: undefined,
+                    id: undefined
+                  }
+                }}>Добавить страницу</Link>
                 }</li>
                 <li><NavLink className={`nav__link drop-menu__link header__popup_link`} to='/' onClick={handleLogout}>Выйти</NavLink></li>
               </ul>

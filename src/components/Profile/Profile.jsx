@@ -36,14 +36,28 @@ function Profile(props) {
         </div>
       </div>
       {user.role === 'admin'
-      && <Link className='header__popup_btn header__popup_btn_green' to={{
-        pathname: '/editor',
-        state: {
-          title: 'Добавить новость',
-          data: undefined,
-          id: undefined
+      && <div className='profile__info__btn'>
+        <Link className='header__popup_btn header__popup_btn_green' to={{
+          pathname: '/editor',
+          state: {
+            title: 'Добавить новость',
+            forNews: true,
+            data: undefined,
+            id: undefined
+          }
         }
-      }}>Добавить новость</Link>
+        }>Добавить новость</Link>
+        <Link className='header__popup_btn header__popup_btn_green' to={{
+          pathname: '/editor',
+          state: {
+            title: 'Добавить страницу',
+            forPage: true,
+            data: undefined,
+            id: undefined
+          }
+        }
+        }>Добавить страницу</Link>
+      </div>
       }
     </main>
   )

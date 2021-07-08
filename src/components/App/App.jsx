@@ -14,6 +14,7 @@ import ProtectedRoute from "../../hoc/ProtectedRoute";
 import Profile from "../Profile/Profile";
 import {useCookies} from "react-cookie";
 import Teachers from "../Teachers/Teachers";
+import PageItem from "../PageItem/PageItem";
 
 function App(props) {
   const [cookie] = useCookies(['logged'])
@@ -31,6 +32,7 @@ function App(props) {
         <Route exact path='/editor' component={TextEditorPage}/>
         <Route exact path='/teachers' component={Teachers}/>
         <Route exact path='/news/:id' component={PageNewsItem}/>
+        <Route exact path='/:id/:id' component={PageItem}/>
         <Route path='/news' component={News}/>
         <Route path='/signin' component={Login}/>
         <ProtectedRoute path='/profile'>

@@ -3,8 +3,6 @@ import {
   AUTH_LOGOUT,
   AUTH_STARTED,
   AUTH_SUCCESS,
-  PUBLIC_DATA_ERROR,
-  PUBLIC_DATA_STARTED
 } from "./actionTypes";
 import {authApi} from "../../utils/Auth";
 

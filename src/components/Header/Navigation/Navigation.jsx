@@ -18,6 +18,7 @@ function Navigation(props) {
 
   useEffect(() => {
     props.getNavData();
+    //eslint-disable-next-line
   }, [])
 
   return (
