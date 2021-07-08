@@ -1,11 +1,11 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './Navigation.css';
 import Link from "./Link/Link";
-import {navLinksList} from "../../../utils/constants";
+import {connect} from "react-redux";
+import {getNavData} from "../../../store/actions/nav";
 
-function Navigation() {
+function Navigation(props) {
   const [isNavOpened, setIsNavOpened] = useState(false);                                             // Стейт мобильная навигация открыта
-
 
   // Обработчик клика по меню
   function handleNavClick() {
@@ -16,6 +16,9 @@ function Navigation() {
     setIsNavOpened(false);
   }
 
+  useEffect(() => {
+    props.getNavData();
+  }, [])
 
   return (
     <>
@@ -32,7 +35,7 @@ function Navigation() {
       </button>
       <nav className={`nav ${isNavOpened && 'nav__mobile'}`}>
         <ul className={`nav__list ${isNavOpened && 'nav__list_mobile'}`}>
-          {navLinksList.map((nav, index) => {
+          {props.navigate.map((nav, index) => {
             return <Link handleOffNavClick={handleOffNavClick} key={index}
                          isNavOpened={isNavOpened} nav={nav}/>
           })}
@@ -43,4 +46,16 @@ function Navigation() {
   )
 }
 
-export default Navigation;
+function mapStateToProps(state) {
+  return {
+    navigate: state.nav.nav
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getNavData: () => dispatch(getNavData())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

@@ -44,7 +44,7 @@ class NewsApi {
 
   editNewsItem(data) {
     return fetch(`${this.baseUrl}/news/edit`, {
-      method: 'POST',
+      method: 'PATCH',
       headers: this.headers,
       credentials: 'include',
       body: JSON.stringify(data)

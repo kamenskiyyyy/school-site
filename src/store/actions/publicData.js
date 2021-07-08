@@ -1,5 +1,5 @@
 import {PUBLIC_DATA_SUCCESS, PUBLIC_DATA_STARTED, PUBLIC_DATA_ERROR} from "./actionTypes";
-import {authApi} from "../../utils/auth";
+import {authApi} from "../../utils/Auth";
 
 export function getPublicData() {
   return async dispatch => {

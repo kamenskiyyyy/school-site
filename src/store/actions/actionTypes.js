@@ -1,4 +1,9 @@
+export const NAV_DATA_SUCCESS = 'NAV_DATA_SUCCESS'
+export const NAV_DATA_ERROR = 'NAV_DATA_ERROR'
+
 export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+export const AUTH_STARTED = 'AUTH_STARTED'
+export const AUTH_ERROR = 'AUTH_ERROR'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 
 export const PUBLIC_DATA_SUCCESS = 'PUBLIC_DATA_SUCCESS'

@@ -23,7 +23,6 @@ class Auth {
   }
 
   authorize = (login, password) => {
-    console.log('происходит fetch')
     return fetch(`${this.baseUrl}/signin`, {
       method: 'POST',
       credentials: 'include',
