@@ -1,29 +1,24 @@
-import {AUTH_LOGOUT, AUTH_SUCCESS} from "./actionTypes";
-import {statusErrors} from "../../utils/constants";
-import {authApi} from "../../utils/auth";
-
-// Обработчик ошибки по кнопке Войти
-function handleError(form, statusError) {
-  const errors = statusErrors.filter(error => error.name === form.name)[0].errors;
-  const statusErrorMessage = errors.filter(error => error.status === statusError)[0].message;
-  console.error(statusErrorMessage)
-  // setIsLoading(false);
-  // setInfoTooltip({
-  //   ...infoTooltip,
-  //   isOpen: true,
-  //   image: statusErrorImage,
-  //   message: statusErrorMessage ? statusErrorMessage : statusErrorText
-  // });
-}
+import {
+  AUTH_ERROR,
+  AUTH_LOGOUT,
+  AUTH_STARTED,
+  AUTH_SUCCESS,
+  PUBLIC_DATA_ERROR,
+  PUBLIC_DATA_STARTED
+} from "./actionTypes";
+import {authApi} from "../../utils/Auth";
 
 export function auth(e, login, password) {
   return async dispatch => {
+    dispatch(authStarted())
     await authApi.authorize(login, password)
       .then(userData => {
         localStorage.setItem('userData', JSON.stringify(userData))
         dispatch(authSuccess(userData))
       })
-      .catch(err => handleError(e.target, err));
+      .catch(err => {
+        dispatch(authError(err.message))
+      })
   }
 }
 
@@ -42,9 +37,15 @@ export function autoLogin() {
   }
 }
 
+function authStarted() {
+  return {
+    type: AUTH_STARTED
+  }
+}
+
 export function logout() {
-  localStorage.clear()
   authApi.logout()
+  localStorage.clear()
   return dispatch => {
     dispatch({type: AUTH_LOGOUT})
   }
@@ -56,5 +57,14 @@ function authSuccess(userData) {
   return {
     type: AUTH_SUCCESS,
     userData
+  }
+}
+
+function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: {
+      error
+    }
   }
 }

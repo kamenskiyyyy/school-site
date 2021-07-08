@@ -28,9 +28,9 @@ function Header(props) {
       <NavLink className='header__logo logo' to='/'><img src={logo} alt="Логотип"/></NavLink>
       <Navigation/>
       <div className='header__profile'>
-        <button onClick={handleProfileClick} className={`header__icon ${props.isAuthenticated && 'header__icon_login'}`}/>
+        <button onClick={handleProfileClick} className={`header__icon ${props.isLogin && 'header__icon_login'}`}/>
         <div className={`nav__link__drop-menu header__popup ${profileOpen && 'header__popup_open'}`}>
-          {props.isAuthenticated
+          {props.isLogin
           ?  <>
             <img src={avatar} alt="Фотография пользователя"/>
               <ul className='nav__link__drop-menu_list'>
@@ -58,7 +58,7 @@ function Header(props) {
 
 function mapStateToProps(state) {
   return {
-    isAuthenticated: !!state.auth.userData,
+    isLogin: state.auth.isLogin,
     user: state.auth.userData
   }
 }

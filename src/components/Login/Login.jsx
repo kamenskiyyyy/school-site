@@ -21,10 +21,10 @@ function Login(props) {
   }
 
   useEffect(() => {
-    if (props.isAuthenticated) {
+    if (props.isLogin) {
       history.push('/profile')
     }
-  }, [history, props.isAuthenticated])
+  }, [history, props.isLogin])
 
   return (
     <main className='login page__container'>
@@ -58,7 +58,7 @@ function Login(props) {
 
 function mapStateToProps(state) {
   return {
-    isAuthenticated: !!state.auth.userData
+    isLogin: state.auth.isLogin
   }
 }
 

@@ -43,12 +43,6 @@ function App(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    isAuthenticated: !!state.auth.userData
-  }
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     autoLogin: () => dispatch(autoLogin()),
@@ -56,4 +50,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));

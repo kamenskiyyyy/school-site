@@ -4,14 +4,14 @@ import {connect} from "react-redux";
 function ProtectedRoute(props) {
   return (
     <Route>
-      {props.isAuthenticated && props.children}
+      {props.isLogin && props.children}
     </Route>
   )
 }
 
 function mapStateToProps(state) {
   return {
-    isAuthenticated: !!state.auth.userData
+    isLogin: state.auth.isLogin
   }
 }
 
