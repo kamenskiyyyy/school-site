@@ -16,7 +16,10 @@ function PageNewsItem(props) {
       .then(res => {
         setNews(res[0])
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err)
+        history.push('/notFound')
+      });
   }, [url])
 
   function handleArchiveNews() {

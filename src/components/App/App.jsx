@@ -38,6 +38,7 @@ function App(props) {
           <Route path='/profile/create' component={CreateUser}/>
           <Route path='/profile' component={Profile}/>
           <Route path='/notFound' component={NotFound}/>
+          <Route exact path='/:id' component={PageItem}/>
           <Route exact path='/:id/:id' component={PageItem}/>
           <Route exact path='/' component={Main}/>
           <Route path='*' component={NotFound}/>
