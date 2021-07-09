@@ -1,5 +1,5 @@
 import './editor.css';
-import {CKEditor} from "@ckeditor/ckeditor5-react";
+import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {useEffect, useState} from "react";
 import {useValidationForm} from "../../hooks/useValidationForm";
@@ -7,6 +7,7 @@ import {createNewNews, createNewPage, editNewNews, editPage} from "../../store/a
 import {transliteration} from "../../utils/utils";
 import {useHistory} from "react-router-dom";
 import {connect} from "react-redux";
+import {serverUrl} from "../../utils/constants";
 
 function PageTextEditor(props) {
   let [data, setData] = useState();
@@ -65,7 +66,6 @@ function PageTextEditor(props) {
     history.push('/');
     window.location.reload();
   }
-
 
   function handleUpdateForPage(e) {
     const dataFromEdit = config.data;
@@ -158,7 +158,10 @@ function PageTextEditor(props) {
           editor={ClassicEditor}
           data={defaultDesc}
           config={{
-            language: 'ru'
+            language: 'ru',
+            ckfinder: {
+              uploadUrl: `${serverUrl}/news/uploads`
+            }
           }}
 
           onChange={(event, editor) => {

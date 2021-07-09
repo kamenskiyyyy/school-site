@@ -8,7 +8,7 @@ class NewsApi {
   }
 
   getAllNews() {
-    return fetch(`${this.baseUrl}/news`, {
+    return fetch(`${this.baseUrl}/news/`, {
       headers: this.headers
     })
       .then(handleOriginalResponse)
