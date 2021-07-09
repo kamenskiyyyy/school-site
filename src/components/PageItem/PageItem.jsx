@@ -19,7 +19,7 @@ function PageItem(props) {
         console.log(err)
         history.push('/notFound')
       });
-  }, [url])
+  }, [history, url])
 
   function handleDeletePage() {
     props.deletePage(page._id);

@@ -31,7 +31,7 @@ function App(props) {
       <Header/>
       {props.isLogin
         ? <Switch>
-          {/*<Route exact path='/editor' component={TextEditorPage}/>*/}
+          <Route exact path='/editor' component={TextEditorPage}/>
           <Route exact path='/teachers' component={Teachers}/>
           <Route exact path='/news/:id' component={PageNewsItem}/>
           <Route path='/news' component={News}/>

@@ -20,7 +20,7 @@ function PageNewsItem(props) {
         console.log(err)
         history.push('/notFound')
       });
-  }, [url])
+  }, [history, url])
 
   function handleArchiveNews() {
     props.archiveNewsItem(news._id);

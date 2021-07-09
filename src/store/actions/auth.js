@@ -45,7 +45,7 @@ export function logout() {
   authApi.logout()
   localStorage.clear()
   return dispatch => {
-    dispatch({type: AUTH_LOGOUT})
+    dispatch(authLogout())
   }
 }
 
@@ -55,6 +55,12 @@ function authSuccess(userData) {
   return {
     type: AUTH_SUCCESS,
     userData
+  }
+}
+
+function authLogout(userData) {
+  return {
+    type: AUTH_LOGOUT
   }
 }
 

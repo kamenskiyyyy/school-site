@@ -17,7 +17,9 @@ function Login(props) {
   function handleSubmit(e) {
     e.preventDefault();
     handleLogin(e, values.login, values.password);
-    history.push('/profile')
+    setTimeout(() => {
+      history.push('/profile')
+    }, 500)
   }
 
   useEffect(() => {
