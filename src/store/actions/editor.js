@@ -67,6 +67,32 @@ export function deletePage(pageId) {
   }
 }
 
+export function archiveNewsItem(id) {
+  return async dispatch => {
+    dispatch(dataEditorStarted())
+    await newsApi.archiveNewsItem({id})
+      .then((response) => {
+        dispatch(dataEditorSuccess(response))
+      })
+      .catch((err) => {
+        dispatch(dataEditorError(err.message))
+      })
+  }
+}
+
+export function deleteNewsItem(id) {
+  return async dispatch => {
+    dispatch(dataEditorStarted())
+    await newsApi.deleteNewsItem({id})
+      .then((response) => {
+        dispatch(dataEditorSuccess(response))
+      })
+      .catch((err) => {
+        dispatch(dataEditorError(err.message))
+      })
+  }
+}
+
 function dataEditorStarted() {
   return {
     type: EDITOR_SEND_STARTED

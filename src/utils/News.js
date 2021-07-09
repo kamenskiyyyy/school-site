@@ -54,6 +54,32 @@ class NewsApi {
         return data
       })
   }
+
+  archiveNewsItem(id) {
+    return fetch(`${this.baseUrl}/news/archive`, {
+      method: 'PATCH',
+      headers: this.headers,
+      credentials: 'include',
+      body: JSON.stringify(id)
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data
+      })
+  }
+
+  deleteNewsItem(id) {
+    return fetch(`${this.baseUrl}/news/delete`, {
+      method: 'DELETE',
+      headers: this.headers,
+      credentials: 'include',
+      body: JSON.stringify(id)
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data
+      })
+  }
 }
 
 export const newsApi = new NewsApi({

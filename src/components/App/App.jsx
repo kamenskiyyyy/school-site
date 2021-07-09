@@ -32,12 +32,13 @@ function App(props) {
         <Route exact path='/editor' component={TextEditorPage}/>
         <Route exact path='/teachers' component={Teachers}/>
         <Route exact path='/news/:id' component={PageNewsItem}/>
-        <Route exact path='/:id/:id' component={PageItem}/>
         <Route path='/news' component={News}/>
         <Route path='/signin' component={Login}/>
         <ProtectedRoute path='/profile'>
           <Profile/>
         </ProtectedRoute>
+        <Route exact path='/:id' component={PageItem}/>
+        <Route exact path='/:id/:id' component={PageItem}/>
         <Route path='/' component={Main}/>
       </Switch>
       <Footer/>

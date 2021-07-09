@@ -65,7 +65,7 @@ class Auth {
   }
 
   getAllTeachers = () => {
-    return fetch(`${this.baseUrl}/public/teachers`, {
+    return fetch(`${this.baseUrl}/teachers`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

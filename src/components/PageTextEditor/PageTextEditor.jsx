@@ -13,6 +13,7 @@ function PageTextEditor(props) {
   let [defaultTitle, setDefaultTitle] = useState(null);
   let [defaultDesc, setDefaultDesc] = useState(null);
   let [defaultCategories, setDefaultCategories] = useState(undefined);
+  let [defaultDate, setDefaultDate] = useState(undefined);
   let [defaultIsPublic, setDefaultIsPublic] = useState(undefined);
   const history = useHistory();
   const {values, handleErrors, errors, isValid} = useValidationForm();
@@ -37,17 +38,16 @@ function PageTextEditor(props) {
   }
 
   function handleSubmitForNews(e) {
-    const now = new Date();
     const url = `/news/${transliteration(values.title)}-${Math.floor(Math.random() * 1000) + 1}`;
     const user = props.user._id;
-    props.createNewNews(e, values.title, values.categories, values.isPublic, data, url, user, now)
+    props.createNewNews(e, values.title, values.categories, values.isPublic, data, url, user, values.date)
     history.push('/news');
     window.location.reload();
   }
 
   function handleUpdateForNews(e) {
     const dataFromEdit = config.data;
-    props.editNewNews(e, dataFromEdit._id, defaultTitle, defaultCategories, defaultIsPublic, data, dataFromEdit.guid, dataFromEdit.author, dataFromEdit.date);
+    props.editNewNews(e, dataFromEdit._id, defaultTitle, defaultCategories, defaultIsPublic, data, dataFromEdit.guid, dataFromEdit.author, defaultDate);
     history.push('/news');
     window.location.reload();
   }
@@ -79,6 +79,9 @@ function PageTextEditor(props) {
       setDefaultTitle(dataFromEdit.title)
       setDefaultDesc(dataFromEdit.description)
       setDefaultCategories(dataFromEdit.categories)
+      const d = new Date(dataFromEdit.date);
+      const date = `${d.getFullYear()}-${('0' + (d.getMonth() + 1)).slice(-2)}-${('0' + (d.getDate())).slice(-2)}`;
+      setDefaultDate(date)
       setDefaultIsPublic(dataFromEdit.isPublic)
     }
   }, [config.data])
@@ -125,6 +128,12 @@ function PageTextEditor(props) {
             <span className='login__form_span'>{errors.categories}</span>
             <div><label>Загрузите обложку</label>
               {/*здесь будет загрузка обложки*/}</div>
+            <div>
+              <label>Дата публикации:</label>
+              <input defaultValue={config.isEdit ? defaultDate : null} name="date" type="date" required
+                     onChange={config.isEdit ? (e => setDefaultDate(e.target.value)) : handleErrors}/>
+            </div>
+            <span className='login__form_span'>{errors.date}</span>
           </>
         }
         <div>

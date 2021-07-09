@@ -4,9 +4,11 @@ import {newsApi} from "../../utils/News";
 import {useEffect, useState} from "react";
 import {formatDate} from "../../utils/constants";
 import {connect} from "react-redux";
+import {archiveNewsItem, deleteNewsItem} from "../../store/actions/editor";
 
 function PageNewsItem(props) {
   const url = useHistory().location.pathname;
+  const history = useHistory();
   const [news, setNews] = useState([]);
 
   useEffect(() => {
@@ -16,6 +18,18 @@ function PageNewsItem(props) {
       })
       .catch(err => console.log(err));
   }, [url])
+
+  function handleArchiveNews() {
+    props.archiveNewsItem(news._id);
+    history.push('/news');
+    window.location.reload();
+  }
+
+  function handleDeleteNews() {
+    props.deleteNewsItem(news._id);
+    history.push('/news');
+    window.location.reload();
+  }
 
   return (
     <main className='page__container page_news_item'>
@@ -30,8 +44,8 @@ function PageNewsItem(props) {
             isEdit: true,
             id: news._id
           }}} className='header__popup_btn header__popup_btn_green page_news_item__button'>Редактировать</Link>
-        <button className='header__popup_btn page_news_item__button page_news_item__button_gray'>Архивировать</button>
-        <button className='header__popup_btn page_news_item__button page_news_item__button_red'>Удалить</button>
+        <button onClick={handleArchiveNews} className='header__popup_btn page_news_item__button page_news_item__button_gray'>Архивировать</button>
+        <button onClick={handleDeleteNews} className='header__popup_btn page_news_item__button page_news_item__button_red'>Удалить</button>
       </div>
       }
       <h1 className='page_news_item__head'>{news.title}</h1>
@@ -47,4 +61,11 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, null)(PageNewsItem);
+function mapDispatchToProps(dispatch) {
+  return {
+    archiveNewsItem: (id) => dispatch(archiveNewsItem(id)),
+    deleteNewsItem: (id) => dispatch(deleteNewsItem(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageNewsItem);
