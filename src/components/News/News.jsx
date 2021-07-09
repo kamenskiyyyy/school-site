@@ -72,7 +72,7 @@ function News() {
       <h1 className='page_news__head'>Новости и события</h1>
       <div className='page_news__all'>
         {renderedNews.map((item, index) => {
-          return <NewsItem key={item._id} title={item.title} date={item.date} img={item.preview} link={item.guid} index={index} />
+          return <NewsItem key={item._id} title={item.title} date={item.date} img={item.cover} link={item.guid} index={index} />
         })}
       </div>
       <button

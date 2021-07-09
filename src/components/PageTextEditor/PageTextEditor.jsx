@@ -40,14 +40,15 @@ function PageTextEditor(props) {
   function handleSubmitForNews(e) {
     const url = `/news/${transliteration(values.title)}-${Math.floor(Math.random() * 1000) + 1}`;
     const user = props.user._id;
-    props.createNewNews(e, values.title, values.categories, values.isPublic, data, url, user, values.date)
+    props.createNewNews(e, values.title, values.categories, values.isPublic, data, getCover(data), url, user, values.date)
     history.push('/news');
     window.location.reload();
   }
 
   function handleUpdateForNews(e) {
     const dataFromEdit = config.data;
-    props.editNewNews(e, dataFromEdit._id, defaultTitle, defaultCategories, defaultIsPublic, data, dataFromEdit.guid, dataFromEdit.author, defaultDate);
+    props.editNewNews(e, dataFromEdit._id, defaultTitle, defaultCategories, defaultIsPublic, data, getCover(data), dataFromEdit.guid, dataFromEdit.author, defaultDate);
+    console.log(getCover(data))
     history.push('/news');
     window.location.reload();
   }
@@ -71,6 +72,15 @@ function PageTextEditor(props) {
     props.editPage(e, dataFromEdit._id, defaultTitle, data, dataFromEdit.link, defaultIsPublic);
     history.push('/');
     window.location.reload();
+  }
+
+  function getCover(html) {
+    const cover = new DOMParser().parseFromString(html, 'text/html').getElementsByTagName('img');
+    if (cover.length > 0) {
+      return cover[0].src
+    } else {
+      return null
+    }
   }
 
   useEffect(() => {
@@ -126,8 +136,6 @@ function PageTextEditor(props) {
               </select>
             </div>
             <span className='login__form_span'>{errors.categories}</span>
-            <div><label>Загрузите обложку</label>
-              {/*здесь будет загрузка обложки*/}</div>
             <div>
               <label>Дата публикации:</label>
               <input defaultValue={config.isEdit ? defaultDate : null} name="date" type="date" required
@@ -173,8 +181,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createNewNews: (e, title, categories, isPublic, description, guid, author, date) => dispatch(createNewNews(e, title, categories, isPublic, description, guid, author, date)),
-    editNewNews: (e, id, title, categories, isPublic, description, guid, author, date) => dispatch(editNewNews(e, id, title, categories, isPublic, description, guid, author, date)),
+    createNewNews: (e, title, categories, isPublic, description, cover, guid, author, date) => dispatch(createNewNews(e, title, categories, isPublic, description, cover, guid, author, date)),
+    editNewNews: (e, id, title, categories, isPublic, description, cover, guid, author, date) => dispatch(editNewNews(e, id, title, categories, isPublic, description, cover, guid, author, date)),
     createNewPage: (e, title, description, link, isPublic, idMenu, menu) => dispatch(createNewPage(e, title, description, link, isPublic, idMenu, menu)),
     editPage: (e, id, title, description, link, isPublic) => dispatch(editPage(e, id, title, description, link, isPublic))
   }
