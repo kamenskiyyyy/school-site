@@ -14,7 +14,7 @@ import Profile from "../Profile/Profile";
 import {useCookies} from "react-cookie";
 import Teachers from "../Teachers/Teachers";
 import PageItem from "../PageItem/PageItem";
-import CreateUser from "../Profile/CreateUser/CreateUser";
+import EditUsers from "../Profile/EditUsers/EditUsers";
 import NotFound from "../NotFound/NotFound";
 
 function App(props) {
@@ -35,7 +35,7 @@ function App(props) {
           <Route exact path='/teachers' component={Teachers}/>
           <Route exact path='/news/:id' component={PageNewsItem}/>
           <Route path='/news' component={News}/>
-          <Route path='/profile/create' component={CreateUser}/>
+          <Route path='/profile/edit-users' component={EditUsers}/>
           <Route path='/profile' component={Profile}/>
           <Route path='/notFound' component={NotFound}/>
           <Route exact path='/:id' component={PageItem}/>

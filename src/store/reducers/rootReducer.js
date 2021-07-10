@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux'
 import authReducer from './auth'
-import teachersReducer from "./public";
 import navReducer from "./nav";
+import usersReducer from "./users";
 
 export default combineReducers({
   nav: navReducer,
-  teachers: teachersReducer,
-  auth: authReducer
+  auth: authReducer,
+  users: usersReducer,
 })

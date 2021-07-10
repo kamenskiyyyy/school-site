@@ -13,18 +13,41 @@
     flex-direction: column;
 }
 
-.editor__form div {
-    margin: 10px 0;
-}
+/*.editor__form div {*/
+/*    margin: 10px 0;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
 
-.editor__form div label {
-    margin-right: 10px;
+.editor__form label {
+    margin: 10px 0;
     font-weight: normal;
     font-size: 14px;
     line-height: 20px;
 }
 
-.editor__form div input[type=text] {
+.editor__form label input, .editor__form label select {
+    width: 300px;
+    margin-left: 10px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    box-shadow: 0 0 2px 0 var(--gray-color);
+}
+
+.editor__form input[type=file] {
+    width: 200px;
+    resize: vertical;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    box-shadow: 0 0 2px 0 var(--gray-color);
+}
+
+.editor__form input[type=text] {
     width: 70%;
     resize: vertical;
     padding: 10px;
@@ -33,7 +56,7 @@
     box-shadow: 0 0 2px 0 var(--gray-color);
 }
 
-.editor__form div select {
+.editor__form select {
     resize: vertical;
     padding: 5px;
     border-radius: 15px;
@@ -41,7 +64,7 @@
     box-shadow: 0 0 2px 0 var(--gray-color);
 }
 
-.editor__form div input[type=checkbox] {
+.editor__form input[type=checkbox] {
     resize: vertical;
     padding: 5px;
     border-radius: 15px;
@@ -50,6 +73,7 @@
 }
 
 .editor__form button {
+    margin: 10px 0;
     position: relative;
     background-color: #4CAF50;
     border: none;

@@ -1,15 +1,16 @@
 import './Teachers.css';
 import {connect} from "react-redux";
 import {useEffect} from "react";
-import {getPublicData} from "../../store/actions/publicData";
 import TeachersItem from "./TeachersItem/TeachersItem";
+import {getAllTeachers} from "../../store/actions/users";
+
+export const subjects = ["Руководство", "Воспитатели", "Начальное образование", "Словесность", "Социальные науки", "Иностранные языки", "Естественные науки", "Математика и информатика", "Физическая культура и спорт", "Искусство и культура", "Служба сопровождения", "Библиотекари"];
 
 function Teachers(props) {
-  let dataPublic = props.teachers.publicData
-  const subjects = ["Руководство", "Воспитатели", "Начальное образование", "Словесность", "Социальные науки", "Иностранные языки", "Естественные науки", "Математика и информатика", "Физическая культура и спорт", "Искусство и культура", "Служба сопровождения", "Библиотекари"];
+  let dataPublic = props.teachers
 
   useEffect(() => {
-    props.getPublicData();
+    props.getAllTeachers();
     //eslint-disable-next-line
   }, []);
 
@@ -44,13 +45,13 @@ function Teachers(props) {
 
 function mapStateToProps(state) {
   return {
-    teachers: state.teachers
+    teachers: state.users.data
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getPublicData: () => dispatch(getPublicData())
+    getAllTeachers: () => dispatch(getAllTeachers())
   }
 }
 

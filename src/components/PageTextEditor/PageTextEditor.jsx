@@ -103,30 +103,27 @@ function PageTextEditor(props) {
       <form name='editor-form'
             onSubmit={choiceSubmit}
             className='editor__form'>
-        <div>
-          <label>{`Название ${config.forPage ? 'страницы' : 'статьи'} `}</label>
+
+        <label>{`Название ${config.forPage ? 'страницы' : 'статьи'} `}
           <input name="title" autoComplete='off' required type="text" defaultValue={defaultTitle}
                  placeholder='Введите название'
                  onChange={config.isEdit ? (e => setDefaultTitle(e.target.value)) : handleErrors}/>
-        </div>
+        </label>
         <span className='login__form_span'>{errors.title}</span>
+
         {config.forPage
-          ? <>
-            <div>
-              <label>Выберите каталог:</label>
-              <select defaultValue={config.isEdit ? defaultCategories : 'Выберите каталог'}
-                      name="catalog" required
-                      onChange={config.isEdit ? (e => setDefaultCategories(e.target.value)) : handleErrors}>
-                <option disabled>Выберите каталог</option>
-                {props.navigate.map((link, i) => {
-                  return <option key={i} value={link._id}>{link.name}</option>
-                })}
-              </select>
-            </div>
-          </>
+          ? <label>Выберите каталог:
+            <select defaultValue={config.isEdit ? defaultCategories : 'Выберите каталог'}
+                    name="catalog" required
+                    onChange={config.isEdit ? (e => setDefaultCategories(e.target.value)) : handleErrors}>
+              <option disabled>Выберите каталог</option>
+              {props.navigate.map((link, i) => {
+                return <option key={i} value={link._id}>{link.name}</option>
+              })}
+            </select>
+          </label>
           : <>
-            <div>
-              <label>Выберите категорию:</label>
+            <label>Выберите категорию:
               <select defaultValue={config.isEdit ? defaultCategories : 'Выберите категорию'}
                       name="categories" required
                       onChange={config.isEdit ? (e => setDefaultCategories(e.target.value)) : handleErrors}>
@@ -134,25 +131,23 @@ function PageTextEditor(props) {
                 <option value='Новости'>Новости</option>
                 <option value='Важное'>Важное</option>
               </select>
-            </div>
+            </label>
             <span className='login__form_span'>{errors.categories}</span>
-            <div>
-              <label>Дата публикации:</label>
+            <label>Дата публикации:
               <input defaultValue={config.isEdit ? defaultDate : null} name="date" type="date" required
                      onChange={config.isEdit ? (e => setDefaultDate(e.target.value)) : handleErrors}/>
-            </div>
+            </label>
             <span className='login__form_span'>{errors.date}</span>
           </>
         }
-        <div>
-          <label>Опубликовать</label>
+        <label>Опубликовать
           <select defaultValue={config.isEdit ? defaultIsPublic : ''} name="isPublic" required
                   onChange={config.isEdit ? (e => setDefaultIsPublic(e.target.value)) : handleErrors}>
             <option disabled/>
             <option value='true'>Да</option>
             <option value='false'>Нет</option>
           </select>
-        </div>
+        </label>
 
         <CKEditor
           editor={ClassicEditor}
@@ -168,6 +163,7 @@ function PageTextEditor(props) {
             handleChange(event, editor)
           }}
         />
+
         {config.isEdit ? <button type='submit'>Изменить</button>
           : <button disabled={!isValid} type='submit'>Создать</button>}
       </form>
