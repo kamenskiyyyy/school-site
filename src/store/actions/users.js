@@ -1,4 +1,5 @@
 import {
+  TEACHER_SUCCESS,
   TEACHERS_SUCCESS,
   USERS_SEND_ERROR,
   USERS_SEND_STARTED,
@@ -12,6 +13,19 @@ export function getAllTeachers() {
     await usersApi.getAllTeachers()
       .then(data => {
         dispatch(teachersSuccess(data))
+      })
+      .catch(err => {
+        dispatch(userSendError(err.message))
+      })
+  }
+}
+
+export function getTeacher(id) {
+  return async dispatch => {
+    dispatch(userSendStarted())
+    await usersApi.getTeacher(id)
+      .then(data => {
+        dispatch(teacherSuccess(data))
       })
       .catch(err => {
         dispatch(userSendError(err.message))
@@ -41,6 +55,13 @@ function userSendStarted() {
 function teachersSuccess(data) {
   return {
     type: TEACHERS_SUCCESS,
+    data
+  }
+}
+
+function teacherSuccess(data) {
+  return {
+    type: TEACHER_SUCCESS,
     data
   }
 }

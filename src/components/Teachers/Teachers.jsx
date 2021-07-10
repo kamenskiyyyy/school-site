@@ -7,12 +7,13 @@ import {getAllTeachers} from "../../store/actions/users";
 export const subjects = ["Руководство", "Воспитатели", "Начальное образование", "Словесность", "Социальные науки", "Иностранные языки", "Естественные науки", "Математика и информатика", "Физическая культура и спорт", "Искусство и культура", "Служба сопровождения", "Библиотекари"];
 
 function Teachers(props) {
-  let dataPublic = props.teachers
+  let teachers = props.teachers
+
+  const {getAllTeachers} = props;
 
   useEffect(() => {
-    props.getAllTeachers();
-    //eslint-disable-next-line
-  }, []);
+    getAllTeachers();
+  }, [getAllTeachers]);
 
   return (
     <main className='page__container teachers'>
@@ -29,7 +30,7 @@ function Teachers(props) {
             {subjects.map((elem, index) => {
               return <div id={elem} key={index}><h2 className='teachers__list_name'>{elem}</h2>
                 <div className='teachers__list'>
-                  {dataPublic.map((item, i) => {
+                  {teachers.map((item, i) => {
                     if (item.category.some(item => item === elem)) {
                       return <TeachersItem id={index} key={i} item={item} />
                     } else return undefined

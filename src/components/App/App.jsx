@@ -16,6 +16,7 @@ import Teachers from "../Teachers/Teachers";
 import PageItem from "../PageItem/PageItem";
 import EditUsers from "../Profile/EditUsers/EditUsers";
 import NotFound from "../NotFound/NotFound";
+import PageTeacher from "../PageTeacher/PageTeacher";
 
 function App(props) {
   const [cookie] = useCookies(['logged'])
@@ -32,6 +33,7 @@ function App(props) {
       {props.isLogin
         ? <Switch>
           <Route exact path='/editor' component={TextEditorPage}/>
+          <Route exact path='/teachers/:id' component={PageTeacher}/>
           <Route exact path='/teachers' component={Teachers}/>
           <Route exact path='/news/:id' component={PageNewsItem}/>
           <Route path='/news' component={News}/>
@@ -44,6 +46,7 @@ function App(props) {
           <Route path='*' component={NotFound}/>
         </Switch>
         : <Switch>
+          <Route exact path='/teachers/:id' component={PageTeacher}/>
           <Route exact path='/teachers' component={Teachers}/>
           <Route exact path='/news/:id' component={PageNewsItem}/>
           <Route path='/news' component={News}/>

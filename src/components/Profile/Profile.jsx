@@ -57,6 +57,16 @@ function Profile(props) {
           }
         }
         }>Добавить страницу</Link>
+        <Link className='header__popup_btn header__popup_btn_green' to={{
+          pathname: '/profile/edit-users',
+          state: {
+            title: 'Добавить пользователя',
+            forPage: true,
+            data: undefined,
+            id: undefined
+          }
+        }
+        }>Добавить учителя</Link>
       </div>
       }
     </main>

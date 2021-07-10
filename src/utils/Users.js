@@ -49,6 +49,19 @@ class Users {
         return data;
       })
   }
+
+  getTeacher = (id) => {
+    return fetch(`${this.baseUrl}/teachers/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data;
+      })
+  }
 }
 
 export const usersApi = new Users({
