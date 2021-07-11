@@ -8,6 +8,8 @@ import thunk from "redux-thunk";
 import {BrowserRouter} from "react-router-dom";
 import {CookiesProvider} from "react-cookie";
 import rootReducer from "./store/reducers/rootReducer";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const composeEnhancers =
   typeof window === 'object' &&

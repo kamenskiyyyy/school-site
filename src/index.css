@@ -1,5 +1,6 @@
 @import url('./vendor/fonts/fonts/fonts.css');
 
+
 :root {
   --white-color: #FFFFFF;
   --black-color: #212529;
@@ -8,7 +9,7 @@
   --lite-blue-color: #51C3E4;
   --green-color: #6ECD78;
   --red-color: #f23623;
-  --gray-color: #8B8B8B;
+  --gray-color: #cad8e2;
 }
 
 body, #root {
