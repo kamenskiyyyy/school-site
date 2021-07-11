@@ -13,7 +13,8 @@
 }
 
 .page_news_item__date {
-    color: var(--gray-color);
+    color: var(--black-color);
+    opacity: 0.5;
 }
 
 .page_news_item__buttons {

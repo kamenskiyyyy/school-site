@@ -61,9 +61,6 @@ function Profile(props) {
           pathname: '/profile/edit-users',
           state: {
             title: 'Добавить пользователя',
-            forPage: true,
-            data: undefined,
-            id: undefined
           }
         }
         }>Добавить учителя</Link>

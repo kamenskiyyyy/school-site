@@ -16,6 +16,7 @@ function PageTextEditor(props) {
   let [defaultCategories, setDefaultCategories] = useState(undefined);
   let [defaultDate, setDefaultDate] = useState(undefined);
   let [defaultIsPublic, setDefaultIsPublic] = useState(undefined);
+  let [defaultIsPreview, setDefaultIsPreview] = useState(undefined);
   const history = useHistory();
   const {values, handleErrors, errors, isValid} = useValidationForm();
   const config = props.location.state;
@@ -41,14 +42,14 @@ function PageTextEditor(props) {
   function handleSubmitForNews(e) {
     const url = `/news/${transliteration(values.title)}-${Math.floor(Math.random() * 1000) + 1}`;
     const user = props.user._id;
-    props.createNewNews(e, values.title, values.categories, values.isPublic, data, getCover(data), url, user, values.date)
+    props.createNewNews(e, values.title, values.categories, values.isPublic, data, getCover(data), url, user, values.date, values.isPreview)
     history.push('/news');
     window.location.reload();
   }
 
   function handleUpdateForNews(e) {
     const dataFromEdit = config.data;
-    props.editNewNews(e, dataFromEdit._id, defaultTitle, defaultCategories, defaultIsPublic, data, getCover(data), dataFromEdit.guid, dataFromEdit.author, defaultDate);
+    props.editNewNews(e, dataFromEdit._id, defaultTitle, defaultCategories, defaultIsPublic, data, getCover(data), dataFromEdit.guid, dataFromEdit.author, defaultDate, defaultIsPreview);
     console.log(getCover(data))
     history.push('/news');
     window.location.reload();
@@ -93,6 +94,7 @@ function PageTextEditor(props) {
       const date = `${d.getFullYear()}-${('0' + (d.getMonth() + 1)).slice(-2)}-${('0' + (d.getDate())).slice(-2)}`;
       setDefaultDate(date)
       setDefaultIsPublic(dataFromEdit.isPublic)
+      setDefaultIsPreview(dataFromEdit.isPreview)
     }
   }, [config.data])
 
@@ -148,6 +150,16 @@ function PageTextEditor(props) {
             <option value='false'>Нет</option>
           </select>
         </label>
+        {config.forNews &&
+        <label>Добавить в банер?
+          <select defaultValue={config.isEdit ? defaultIsPreview : ''} name="isPreview" required
+                  onChange={config.isEdit ? (e => setDefaultIsPreview(e.target.value)) : handleErrors}>
+            <option disabled/>
+            <option value='true'>Да</option>
+            <option value='false'>Нет</option>
+          </select>
+        </label>
+        }
 
         <CKEditor
           editor={ClassicEditor}
@@ -180,8 +192,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    createNewNews: (e, title, categories, isPublic, description, cover, guid, author, date) => dispatch(createNewNews(e, title, categories, isPublic, description, cover, guid, author, date)),
-    editNewNews: (e, id, title, categories, isPublic, description, cover, guid, author, date) => dispatch(editNewNews(e, id, title, categories, isPublic, description, cover, guid, author, date)),
+    createNewNews: (e, title, categories, isPublic, description, cover, guid, author, date, isPreview) => dispatch(createNewNews(e, title, categories, isPublic, description, cover, guid, author, date, isPreview)),
+    editNewNews: (e, id, title, categories, isPublic, description, cover, guid, author, date, isPreview) => dispatch(editNewNews(e, id, title, categories, isPublic, description, cover, guid, author, date, isPreview)),
     createNewPage: (e, title, description, link, isPublic, idMenu, menu) => dispatch(createNewPage(e, title, description, link, isPublic, idMenu, menu)),
     editPage: (e, id, title, description, link, isPublic) => dispatch(editPage(e, id, title, description, link, isPublic))
   }

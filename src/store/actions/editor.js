@@ -2,10 +2,10 @@ import {EDITOR_SEND_ERROR, EDITOR_SEND_STARTED, EDITOR_SEND_SUCCESS} from "./act
 import {newsApi} from "../../utils/News";
 import {pageApi} from "../../utils/Pages";
 
-export function createNewNews(e, title, categories, isPublic, description, cover, guid, author, date) {
+export function createNewNews(e, title, categories, isPublic, description, cover, guid, author, date, isPreview) {
   return async dispatch => {
     dispatch(dataEditorStarted())
-    await newsApi.createNewNews({title, categories, isPublic, description, cover, guid, author, date})
+    await newsApi.createNewNews({title, categories, isPublic, description, cover, guid, author, date, isPreview})
       .then((response) => {
         dispatch(dataEditorSuccess(response))
       })
@@ -15,10 +15,10 @@ export function createNewNews(e, title, categories, isPublic, description, cover
   }
 }
 
-export function editNewNews(e, id, title, categories, isPublic, description, cover, guid, author, date) {
+export function editNewNews(e, id, title, categories, isPublic, description, cover, guid, author, date, isPreview) {
   return async dispatch => {
     dispatch(dataEditorStarted())
-    await newsApi.editNewsItem({id, title, categories, isPublic, description, cover, guid, author, date})
+    await newsApi.editNewsItem({id, title, categories, isPublic, description, cover, guid, author, date, isPreview})
       .then((response) => {
         dispatch(dataEditorSuccess(response))
       })

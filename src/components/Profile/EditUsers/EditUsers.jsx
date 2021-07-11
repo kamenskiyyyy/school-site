@@ -5,9 +5,11 @@ import {connect} from "react-redux";
 import {createNewUsers} from "../../../store/actions/users";
 import {useState} from "react";
 import {usersApi} from "../../../utils/Users";
+import {useHistory} from "react-router-dom";
 
 function EditUsers(props) {
   const config = props.location.state;
+  const history = useHistory();
   const {values, handleErrors, errors, isValid} = useValidationForm();
   const [defaultCategory, setDefaultCategory] = useState();
   const [defaultAvatar, setDefaultAvatar] = useState();
@@ -44,8 +46,8 @@ function EditUsers(props) {
     const {name, position, subjects, email, login, password, role, work} = values;
     const subjectsArray = subjects.split(', ')
     props.createNewUsers(name, position, subjectsArray, defaultCategory, email, login, password, role, work, defaultAvatar);
-    // history.push('/teachers');
-    // window.location.reload();
+    history.push('/teachers');
+    window.location.reload();
   }
 
   return (

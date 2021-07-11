@@ -29,7 +29,7 @@
     font-weight: normal;
     font-size: 10px;
     line-height: 12px;
-    color: var(--gray-color);
+    color: var(--black-color);
 }
 
 .login__form_input {
@@ -103,7 +103,7 @@
     font-weight: normal;
     font-size: inherit;
     line-height: inherit;
-    color: #8B8B8B;
+    color: var(--black-color);
 }
 .login__in a {
     margin: 0 0 0 6px;

@@ -1,16 +1,13 @@
 import './Main.css';
 import Slider from "react-slick";
-import analyze from 'rgbaster'
-import url from '../../images/pattern2.png';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {getAllNews} from "../../store/actions/news";
 import {connect} from "react-redux";
 import NewsItem from "../News/NewsItem/NewsItem";
-
+import { renderToString } from 'react-dom/server'
 
 function Main(props) {
-  const [color, setColor] = useState();
   const {getAllNews, news} = props;
 
   useEffect(() => {
@@ -20,42 +17,39 @@ function Main(props) {
   const settingsSlider = {
     dots: true,
     infinite: true,
+    autoplay: true,
+    className: 'slider-item',
+    pauseOnDotsHover: true,
+    pauseOnHover: true,
+    swipeToSlide: true,
     speed: 500,
+    autoplaySpeed: 15000,
     slidesToShow: 1,
     slidesToScroll: 1
   };
-
-  useEffect(() => {
-    analyze(url, {ignore: ['rgb(255,255,255)', 'rgb(0,0,0)'], scale: 0.6})
-      .then(item => {
-        console.log(item[0].color)
-        setColor(item[0].color)
-      })
-  }, [color])
-
-
-  console.log(color)
-
-
   return (
     <main className='page__container page_main'>
       <div>
         <Slider {...settingsSlider}>
-          <div>
-            <div className='slider-item'>
-              <div className='slider-item__img'>
-                <div style={{background: ` linear-gradient(90deg, transparent 70%, ${color} 100%)`}}/>
-                <img className='slider-item__img' src={url} alt="Обложка"/>
+          {!!news && news.reverse().map((item, i) => {
+            if (item.isPreview === true) {
+              console.log(document.getElementById(item._id))
+              const doc = new DOMParser().parseFromString(item.description, 'text/html')
+              return <div key={i}>
+                <div className='slider-item'>
+                  <div className='slider-item__img'>
+                    <div style={{background: ` linear-gradient(90deg, transparent 70%, var(--gray-color) 100%)`}}/>
+                    <img className='slider-item__img' src={item.cover} alt={`Обложка ${item.title}`}/>
+                  </div>
+                  <div className='slider-item__text' style={{backgroundColor: 'var(--gray-color'}}>
+                    <h3>{item.title}</h3>
+                    <p>{doc.querySelector('p').textContent}</p>
+                    <Link to={item.guid} className='header__popup_btn'>Подробнее &#8250;</Link>
+                  </div>
+                </div>
               </div>
-              <div className='slider-item__text' style={{backgroundColor: color}}>
-                <h3>Остановим Covid-19 вместе!</h3>
-                <p>Чаще мойте руки с мылом. * Носите медицинскую маску. * Соблюдайте меры личной гигиены. * Не посещайте
-                  места массового скопления людей. * При появлении признаков респираторных заболеваний обратитесь к
-                  врачу.</p>
-                <Link to='/' className='header__popup_btn'>Подробнее &#8250;</Link>
-              </div>
-            </div>
-          </div>
+            } else return undefined
+          })}
         </Slider>
       </div>
       <div className='page_main__news'>

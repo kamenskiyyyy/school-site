@@ -16,7 +16,6 @@
     "react-slick": "^0.28.1",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
-    "rgbaster": "^2.1.1",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^1.1.2"
   },
