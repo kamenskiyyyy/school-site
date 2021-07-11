@@ -1,6 +1,7 @@
 .page_item {
-    margin: 20px auto;
+    margin: 20px 60px;
     display: flex;
+    width: auto;
     flex-direction: column;
 }
 
@@ -8,8 +9,11 @@
     margin: 0 0 30px;
     text-align: left;
     font-weight: normal;
-    font-size: 50px;
-    line-height: 58px;
+    font-size: 40px;
+}
+
+.page_item__head_center {
+    text-align: center;
 }
 
 .page_item__date {
@@ -46,4 +50,24 @@
     height: 80px;
     text-align: center;
     justify-content: center;
+}
+
+.page_item__content {
+    display: flex;
+}
+
+.page_item__content__nav {
+    margin: 0 50px 0 0;
+    width: 300px;
+    height: auto;
+    text-transform: initial;
+    padding: 5px 5px;
+    text-align: left;
+    justify-content: left;
+}
+
+.page_item__content__nav:hover {
+    background: var(--gray-color);
+    opacity: 1;
+    color: var(--white-color);
 }

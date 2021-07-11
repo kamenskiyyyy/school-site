@@ -153,7 +153,7 @@ function PageTextEditor(props) {
           editor={ClassicEditor}
           data={defaultDesc}
           config={{
-            language: 'ru',
+            language: "ru",
             ckfinder: {
               uploadUrl: `${serverUrl}/news/uploads`
             }
