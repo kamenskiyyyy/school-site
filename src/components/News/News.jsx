@@ -1,10 +1,16 @@
 import './News.css';
-import {newsApi} from "../../utils/News";
 import {useEffect, useState} from "react";
 import NewsItem from "./NewsItem/NewsItem";
+import {connect} from "react-redux";
+import {getAllNews} from "../../store/actions/news";
 
-function News() {
-  const [news, setNews] = useState([]);
+function News(props) {
+  const {getAllNews, news} = props;
+  let renderedNews = false;
+
+  useEffect(() => {
+    getAllNews()
+  }, [getAllNews])
 
   const [initialCardsAmount, setInitialCardsAmount] = useState(() => {
     const size = window.innerWidth;
@@ -53,15 +59,9 @@ function News() {
     setInitialCardsAmount(prev => prev + addCardsAmount);
   }
 
-  const renderedNews = news.slice(0, initialCardsAmount);
-
-  useEffect(() => {
-    newsApi.getAllNews()
-      .then(res => {
-        setNews(res)
-      })
-      .catch(err => console.log(err));
-  }, [])
+  if (!!news) {
+    renderedNews = news.slice(0, initialCardsAmount);
+  }
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -71,17 +71,32 @@ function News() {
     <main className='page_news page__container'>
       <h1 className='page_news__head'>Новости и события</h1>
       <div className='page_news__all'>
-        {renderedNews.map((item, index) => {
+        {!!renderedNews && renderedNews.map((item, index) => {
           return <NewsItem key={item._id} title={item.title} date={item.date} img={item.cover} link={item.guid} index={index} />
         })}
       </div>
+      {!!news &&
       <button
         className={`page_news__btn ${news.length === renderedNews.length ? 'page_news__btn_hidden' : null}`}
         onClick={handleAddNews}
       >Ещё
       </button>
+      }
     </main>
   )
 }
 
-export default News;
+function mapStateToProps(state) {
+  return {
+    news: state.news.news
+  }
+}
+
+function mapDispatchToProps(dispatch)
+{
+  return {
+    getAllNews: () => dispatch(getAllNews())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(News);
