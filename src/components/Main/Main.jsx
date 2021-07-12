@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 import {getAllNews} from "../../store/actions/news";
 import {connect} from "react-redux";
 import NewsItem from "../News/NewsItem/NewsItem";
-import { renderToString } from 'react-dom/server'
 
 function Main(props) {
   const {getAllNews, news} = props;

@@ -23,6 +23,20 @@ class Auth {
       })
   }
 
+  getContent = () => {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(handleOriginalResponse)
+      .then(data => {
+        return data;
+      })
+  }
+
   logout = () => {
     return fetch(`${this.baseUrl}/users/logout`, {
       method: 'GET',

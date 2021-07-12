@@ -93,7 +93,8 @@
 
 .teachers__list_item_desc {
     margin: 10px 0 0;
-    color: var(--gray-color);
+    color: var(--black-color);
+    opacity: 0.5;
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;

@@ -1,4 +1,5 @@
-export const serverUrl = 'http://localhost:3030';
+export const serverUrl = 'https://api.school-390.kamenev.tech';
+// export const serverUrl = 'http://localhost:3030';
 
 export function formatDate(date) {
   const d = new Date(date);

@@ -20,12 +20,11 @@ import PageTeacher from "../PageTeacher/PageTeacher";
 
 function App(props) {
   const [cookie] = useCookies(['logged'])
+  const {autoLogin} = props;
 
   useEffect(() => {
-    if (cookie.logged === 'true') {
-      props.autoLogin()
-    }
-  }, [cookie.logged, props])
+      autoLogin()
+  }, [autoLogin, cookie.logged])
 
   return (
     <>

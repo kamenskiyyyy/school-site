@@ -13,8 +13,6 @@ function PageItem(props) {
   const [isMenuPage, setIsMenuPage] = useState(false);
   const {user, navigate} = props;
 
-  console.log(navLink)
-
   useEffect(() => {
     pageApi.getPage(url)
       .then(res => {
