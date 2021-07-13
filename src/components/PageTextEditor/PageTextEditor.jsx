@@ -44,7 +44,6 @@ function PageTextEditor(props) {
     const user = props.user._id;
     props.createNewNews(e, values.title, values.categories, values.isPublic, data, getCover(data), url, user, values.date, values.isPreview)
     history.push('/news');
-    window.location.reload();
   }
 
   function handleUpdateForNews(e) {
@@ -52,7 +51,6 @@ function PageTextEditor(props) {
     props.editNewNews(e, dataFromEdit._id, defaultTitle, defaultCategories, defaultIsPublic, data, getCover(data), dataFromEdit.guid, dataFromEdit.author, defaultDate, defaultIsPreview);
     console.log(getCover(data))
     history.push('/news');
-    window.location.reload();
   }
 
   function handleSubmitForPage(e) {
@@ -60,19 +58,16 @@ function PageTextEditor(props) {
     if (link.dropMenu === undefined) {
       link.dropMenu = []
     }
-    console.log(link.dropMenu)
     const url = `${link.path}/${transliteration(values.title)}`;
     const menu = [...link.dropMenu, {name: values.title, path: url}]
     props.createNewPage(e, values.title, data, url, values.isPublic, values.catalog, menu)
     history.push('/');
-    window.location.reload();
   }
 
   function handleUpdateForPage(e) {
     const dataFromEdit = config.data;
     props.editPage(e, dataFromEdit._id, defaultTitle, data, dataFromEdit.link, defaultIsPublic);
     history.push('/');
-    window.location.reload();
   }
 
   function getCover(html) {

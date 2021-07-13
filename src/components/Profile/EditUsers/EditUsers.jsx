@@ -47,7 +47,6 @@ function EditUsers(props) {
     const subjectsArray = subjects.split(', ')
     props.createNewUsers(name, position, subjectsArray, defaultCategory, email, login, password, role, work, defaultAvatar);
     history.push('/teachers');
-    window.location.reload();
   }
 
   return (
@@ -80,7 +79,7 @@ function EditUsers(props) {
             </select>
           </label>
           <label>E-mail:
-            <input name='email' type="email" autoComplete='off' required placeholder='например: example@example.ru'
+            <input name='email' type="email" autoComplete='off' placeholder='например: example@example.ru'
                    onChange={handleErrors}/>
           </label>
           <span className='login__form_span'>{errors.email}</span>

@@ -11,7 +11,6 @@ import Login from "../Login/Login";
 import {connect} from "react-redux";
 import {autoLogin, logout} from "../../store/actions/auth";
 import Profile from "../Profile/Profile";
-import {useCookies} from "react-cookie";
 import Teachers from "../Teachers/Teachers";
 import PageItem from "../PageItem/PageItem";
 import EditUsers from "../Profile/EditUsers/EditUsers";
@@ -19,12 +18,11 @@ import NotFound from "../NotFound/NotFound";
 import PageTeacher from "../PageTeacher/PageTeacher";
 
 function App(props) {
-  const [cookie] = useCookies(['logged'])
   const {autoLogin} = props;
 
   useEffect(() => {
-      autoLogin()
-  }, [autoLogin, cookie.logged])
+    autoLogin()
+  }, [autoLogin])
 
   return (
     <>

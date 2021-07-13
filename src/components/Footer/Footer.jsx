@@ -2,6 +2,7 @@ import './Footer.css';
 import {NavLink} from "react-router-dom";
 import vk from '../../images/icon_vk.svg';
 import rss from '../../images/icon_rss.svg';
+import {serverUrl} from "../../utils/constants";
 
 function Footer() {
   return (
@@ -24,7 +25,7 @@ function Footer() {
           <div>
             <a href="https://vk.com/spbschool390" target='_blank' rel="noreferrer">
               <img className='footer__icon' src={vk} alt="Иконка сайта ВКонтакте"/></a>
-            <a href="http://localhost:3030/news/rss" target='_blank' rel="noreferrer">
+            <a href={`${serverUrl}/rss`} target='_blank' rel="noreferrer">
               <img src={rss} alt="Иконка RSS ленты"/></a>
           </div>
           <NavLink className='footer__text' to='/os'>Версия для слабовидящих</NavLink>

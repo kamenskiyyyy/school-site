@@ -3,9 +3,10 @@ import {useEffect, useState} from "react";
 import NewsItem from "./NewsItem/NewsItem";
 import {connect} from "react-redux";
 import {getAllNews} from "../../store/actions/news";
+import Preloader from "../Preloader/Preloader";
 
 function News(props) {
-  const {getAllNews, news} = props;
+  const {getAllNews, news, newsLoading} = props;
   let renderedNews = false;
 
   useEffect(() => {
@@ -70,11 +71,15 @@ function News(props) {
   return (
     <main className='page_news page__container'>
       <h1 className='page_news__head'>Новости и события</h1>
-      <div className='page_news__all'>
-        {!!renderedNews && renderedNews.map((item, index) => {
-          return <NewsItem key={item._id} title={item.title} date={item.date} img={item.cover} link={item.guid} index={index} />
-        })}
-      </div>
+      {newsLoading
+      ? <Preloader />
+      : <div className='page_news__all'>
+          {!!renderedNews && renderedNews.map((item, index) => {
+            return <NewsItem key={item._id} title={item.title} date={item.date} img={item.cover} link={item.guid} index={index} />
+          })}
+        </div>
+      }
+
       {!!news &&
       <button
         className={`page_news__btn ${news.length === renderedNews.length ? 'page_news__btn_hidden' : null}`}
@@ -88,7 +93,8 @@ function News(props) {
 
 function mapStateToProps(state) {
   return {
-    news: state.news.news
+    news: state.news.news,
+    newsLoading: state.news.loading
   }
 }
 

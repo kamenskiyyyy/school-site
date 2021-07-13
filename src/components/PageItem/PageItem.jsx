@@ -66,7 +66,7 @@ function PageItem(props) {
         ? <>
           <h1 className='page_item__head page_item__head_center'>Выберите страницу</h1>
           <div className='page_item__links'>
-            {isMenuPage.dropMenu.map((item, i) => {
+            {!!isMenuPage.dropMenu && isMenuPage.dropMenu.map((item, i) => {
               return <Link id={`id${i}`} className='nav__link teachers__list_item_bac page_item__links_item' key={i}
                            to={item.path}>{item.name}</Link>
             })}

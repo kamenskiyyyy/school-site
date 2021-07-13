@@ -27,10 +27,10 @@ function Profile(props) {
               <td>Должность</td>
               <td>{user.position}</td>
             </tr>
-            {/*<tr>*/}
-            {/*  <td>Предмет</td>*/}
-            {/*  <td>{user.subjects}</td>*/}
-            {/*</tr>*/}
+            <tr>
+              <td>Предмет</td>
+              <td>{user.subjects}</td>
+            </tr>
             </tbody>
           </table>
         </div>
