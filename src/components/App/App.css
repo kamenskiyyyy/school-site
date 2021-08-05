@@ -1,9 +1,0 @@
-.page__container {
-    margin: 0 auto;
-    display: flex;
-    min-width: 282px;
-    max-width: calc(100% - 19px * 2);
-    width: 1280px;
-    scroll-behavior: smooth;
-    flex: 1 0 auto;
-}
