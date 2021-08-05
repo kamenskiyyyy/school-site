@@ -1,0 +1,138 @@
+.login {
+    margin: 30px auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 396px;
+    border-radius: 20px;
+
+    -webkit-box-shadow: 0 0 6px 0 var(--gray-color);
+    -moz-box-shadow: 0 0 6px 0 var(--gray-color);
+    box-shadow: 0 0 6px 0 var(--gray-color);
+}
+
+.login__head {
+    margin: 40px 0;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login__form_label {
+    margin: 10px 0 0;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: var(--black-color);
+}
+
+.login__form_input {
+    margin: 10px 0 10px;
+    padding: 15px;
+    background: var(--white-color);
+    border-radius: 8px;
+    border: 0;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--black-color);
+    transition: linear 200ms;
+    -webkit-box-shadow: 0 0 6px 0 var(--gray-color);
+    -moz-box-shadow: 0 0 6px 0 var(--gray-color);
+    box-shadow: 0 0 6px 0 var(--gray-color);
+}
+
+.login__form_input:hover, .login__form_input:focus, .login__form_input:active {
+    outline: none;
+}
+
+.error {
+    color: var(--red-color);
+}
+
+.login__form_span {
+    visibility: visible;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: var(--red-color);
+}
+.login__form_span_hidden {
+    visibility: hidden;
+}
+
+.login_btn {
+    margin: 70px 0 16px;
+    height: 45px;
+    width: 100%;
+    background: var(--lite-blue-color);
+    border-radius: 3px;
+    border: none;
+    color: var(--white-color);
+    cursor: pointer;
+    transition: linear 200ms;
+}
+.login_btn:hover, .login_btn:focus, .login_btn:active {
+    opacity: .8;
+    outline: none;
+}
+.login_btn-disabled {
+    background: var(--gray-color);
+    cursor: auto;
+}
+.login_btn-disabled:hover, .login_btn-disabled:focus {
+    opacity: 1;
+}
+
+.login__in {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+}
+.login__in p {
+    margin: 0;
+    font-weight: normal;
+    font-size: inherit;
+    line-height: inherit;
+    color: var(--black-color);
+}
+.login__in a {
+    margin: 0 0 0 6px;
+    text-decoration: none;
+    color: var(--lite-blue-color);
+    font-weight: normal;
+    font-size: inherit;
+    line-height: inherit;
+    transition: linear 300ms;
+}
+.login__in a:hover, .login__in a:focus, .login__in a:active {
+    opacity: .5;
+    outline: none;
+}
+
+@media screen and (max-width: 425px) {
+    .login {
+        margin: 56px auto;
+        width: 90%;
+    }
+    .login__logo {
+        margin-right: 0;
+        align-self: center;
+    }
+    .login__head {
+        text-align: center;
+    }
+    .login__in {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
