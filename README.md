@@ -1,22 +1,27 @@
-<img src="https://school-390.kamenev.tech/static/media/logo.f3f829c2.svg" alt="Логтип школы №390" width="50" align="left" />
+# SchoolSite
 
-# Frontend проекта "Сайт школы №390"
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 
-![JavaScript](https://img.shields.io/badge/-JavaScript-f3de35?logo=javaScript&logoColor=black)
-___
+## Development server
 
-## Задача
-Создать сайт школы с панелью администратора, блоком новостей, редактором статей и страниц, rss-лентой, а также конструктором мини-сайтов для учителей.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Описание
-Бэкенд часть сайта на Express.js. Схемы и модели созданы через Mongoose. Есть публичные и защищенные роуты. Используется валидация Joi и celebrate. При создании пользователя пароль хешируется модулем bcrypt с добавлением соли. Реализована централизованная обработка ошибок. Настроено логирование запросов и ошибок.
+## Code scaffolding
 
-[Ссылка на репозиторий Backend-части](https://github.com/kamenskiyyyy/school-site-api)
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Стек
+## Build
 
-- React
-- JavaScript
-- Redux
-- CSS
-- HTML5
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
